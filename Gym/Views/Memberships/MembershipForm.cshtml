@@ -1,0 +1,49 @@
+﻿@model Gym.Models.Membership
+
+@{
+    ViewBag.Title = "MembershipForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>New Membership</h2>
+<br />
+<br />
+<br />
+<div class="container">
+    <h2>Add a new Membership Type</h2>
+    <br />
+
+    @using (Html.BeginForm("Save", "Memberships"))
+    {
+        @Html.ValidationSummary(true, "Please fix the following errors")
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.MembershipType)
+            @Html.TextBoxFor(m => m.MembershipType, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.MembershipType)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Price)
+            @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Price)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.DurationInMonths)
+            @Html.TextBoxFor(m => m.DurationInMonths, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.DurationInMonths)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.DiscountRate)
+            @Html.TextBoxFor(m => m.DiscountRate, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.DiscountRate)
+        </div>
+        if (Model.Id > 0)
+        {
+            @Html.HiddenFor(m => m.Id)
+        }
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-success">Save</button>
+    }
+</div>

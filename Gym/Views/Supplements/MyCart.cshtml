@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Gym.Models.ShoppingCart>
+@{
+    ViewBag.Title = "MyCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MyCart</h2>
+
+<div class="container">
+    <br />
+    @if (@Model.Count() > 0)
+    {
+        <h2>@Model.ElementAt(0).Name this is your Cart</h2>
+    }
+    else
+    {
+        <h2>No purchases at this time</h2>
+    }
+
+    <br /><br />
+    @if (Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+            <div id=@item.Id class="col-md-6 card-info">
+                <div class="h-100 p-5 bg-light border rounded-3">
+                    <h2>@item.Description</h2>
+                    <p>Total: @item.Total</p>
+                    <img src=@item.Image class="supplement-img" />
+                    <button class="btn-link remove_text_decoration" onclick="deleteCartItem(@item.Id);">Remove</button> | <button class="btn-link remove_text_decoration"><a href="/Supplements/UpdateCart/@item.Id">Update</a></button>
+                </div>
+            </div>
+        }
+        <br /><br />
+
+    }
+    else
+    {
+        <div class="col-md-6 card-info" style="width:80%;">
+            <div class="h-100 p-5 bg-light border rounded-3">
+                <h2>You do not have anything in your cart at this moment</h2>
+                <p>Please make a purchase to see information in this section!</p>
+
+                @Html.ActionLink("Go to Menu", "Index", "Home")
+            </div>
+        </div>
+    }
+
+
+
+</div>
+<br />
+@if (Model.Count() > 0)
+{
+    <div class="container">
+        <div style="text-align:center; display:block">
+            <button class="btn btn-lg btn-success">Check Out</button>
+        </div>
+    </div>
+}
+
+
+@section scripts
+    {
+    <script>
+
+
+        function deleteCartItem(id) {
+            var cartId = parseInt(id);
+            var div = "#" + id;
+                    bootbox.confirm("Are you sure you want to delete this item?", function (result) {
+                        if (result) {
+                            $.ajax({
+
+                                url: "/Supplements/DeleteCart/" + cartId,
+                                method: "POST",
+                                success: function () { $(div).remove(); }
+                            });
+                        }
+                    });
+        }
+
+        
+
+
+
+    </script>
+
+    }

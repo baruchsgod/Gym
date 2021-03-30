@@ -1,0 +1,50 @@
+﻿@model Gym.Models.ShoppingCart
+
+@{
+    ViewBag.Title = "UpdateCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Update the Quantity of your order</h2>
+<br />
+<br />
+<br />
+<div class="container">
+    <h2>Update the Quantity of your order</h2>
+    <br />
+
+    @using (Html.BeginForm("SaveCart", "Supplements"))
+    {
+        @Html.ValidationSummary(true, "Please fix the following errors")
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description)
+            @Html.TextBoxFor(m => m.Description, new { @class = "form-control", @readonly = "readonly" })
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Total)
+            @Html.TextBoxFor(m => m.Total, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Date)
+            @Html.TextBoxFor(m => m.Date, new { @class = "form-control", @readonly = "readonly" })
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Quantity)
+            @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control", @type = "number" })
+            @Html.ValidationMessageFor(m => m.Quantity)
+        </div>
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.ApplicationUserId)
+        @Html.HiddenFor(m => m.Price)
+        @Html.HiddenFor(m => m.State)
+        @Html.HiddenFor(m => m.Name)
+        @Html.HiddenFor(m => m.Image)
+
+        @Html.AntiForgeryToken()
+
+        <button type="submit" class="btn btn-success">Save</button>
+    }
+</div>

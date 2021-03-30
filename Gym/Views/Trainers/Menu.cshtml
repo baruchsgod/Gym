@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Menu</h2>
+<br />
+<br />
+
+
+<div class="container">
+    <h3>Menu of Actions</h3>
+    <br /><br />
+    <ul class="list-group">
+        <li class="list-group-item">@Html.ActionLink("Check Routines", "ListRoutines", "Trainers")</li>
+        <li class="list-group-item">@Html.ActionLink("Add Routines", "CreateRoutine", "Trainers")</li>
+        <li class="list-group-item">@Html.ActionLink("Update Routines", "UpdateRoutine", "Trainers")</li>
+
+        <li class="list-group-item">@Html.ActionLink("Delete Routines", "DeleteRoutine", "Trainers")</li>
+        <li class="list-group-item">@Html.ActionLink("Add Metrics", "AddMetric", "Trainers")</li>
+        <li class="list-group-item">@Html.ActionLink("Update Metrics", "UpdateMetric", "Trainers")</li>
+        <li class="list-group-item">@Html.ActionLink("Check Metrics", "CheckMetrics", "Trainers")</li>
+    </ul>
+</div>

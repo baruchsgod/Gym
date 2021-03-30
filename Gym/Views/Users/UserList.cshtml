@@ -1,0 +1,115 @@
+﻿@model IEnumerable<Gym.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "UserList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UserList</h2>
+<br />
+<br />
+
+<div class="container">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table id="users" class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.cedula)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.lName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BirthDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BeginDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cedula)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefono)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BirthDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BeginDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="8" style="text-align:center">There are not active users yet</td>
+                </tr>
+            }
+        </tbody>
+
+        
+
+
+
+    </table>
+
+</div>
+
+@section scripts
+    {
+    <script>
+            $(document).ready(function () {
+
+                $("#users").DataTable();
+
+                //$("#memberships ").on("click", ".js-delete",function () {
+                //    var button = $(this);
+                //    var tableRow = "#" + button.attr("data-membership-id");
+                //    console.log(button);
+
+                //    bootbox.confirm("Are you sure you want to delete this membership?", function (result) {
+                //        if (result) {
+                //            $.ajax({
+
+                //                url: "/Memberships/Delete/" + button.attr("data-membership-id"),
+                //                method: "POST",
+                //                success: function () { $(tableRow).remove(); }
+                //            });
+                //        }
+                //    });
+
+                //});
+            });
+    </script>
+}
