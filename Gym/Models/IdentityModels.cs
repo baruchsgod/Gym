@@ -49,6 +49,8 @@ namespace Gym.Models
         public DbSet<Calendar> Calendar { get; set; }
 
         public DbSet<ShoppingCart> ShoppingCart { get; set; }
+
+        public DbSet<Payment> Payment { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

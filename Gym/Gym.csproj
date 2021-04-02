@@ -213,12 +213,33 @@
     <Compile Include="Migrations\202103242258468_AddDescriptionAndImage.Designer.cs">
       <DependentUpon>202103242258468_AddDescriptionAndImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104020053241_AddPaymentsTable.cs" />
+    <Compile Include="Migrations\202104020053241_AddPaymentsTable.Designer.cs">
+      <DependentUpon>202104020053241_AddPaymentsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104020103208_UpdatePayments.cs" />
+    <Compile Include="Migrations\202104020103208_UpdatePayments.Designer.cs">
+      <DependentUpon>202104020103208_UpdatePayments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104020130015_FixBackPayments.cs" />
+    <Compile Include="Migrations\202104020130015_FixBackPayments.Designer.cs">
+      <DependentUpon>202104020130015_FixBackPayments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104020221028_ChangePaymentTypeFromBoolToString.cs" />
+    <Compile Include="Migrations\202104020221028_ChangePaymentTypeFromBoolToString.Designer.cs">
+      <DependentUpon>202104020221028_ChangePaymentTypeFromBoolToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104020310483_AddingDateAndTotal.cs" />
+    <Compile Include="Migrations\202104020310483_AddingDateAndTotal.Designer.cs">
+      <DependentUpon>202104020310483_AddingDateAndTotal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Calendar.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Membership.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\Supplement.cs" />
@@ -490,6 +511,8 @@
     <Content Include="Views\Supplements\MyCart.cshtml" />
     <Content Include="Views\Supplements\UpdateCart.cshtml" />
     <Content Include="Views\Supplements\Payment.cshtml" />
+    <Content Include="Views\Supplements\Payment_Form.cshtml" />
+    <Content Include="Views\Supplements\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -534,6 +557,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103242258468_AddDescriptionAndImage.resx">
       <DependentUpon>202103242258468_AddDescriptionAndImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104020053241_AddPaymentsTable.resx">
+      <DependentUpon>202104020053241_AddPaymentsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104020103208_UpdatePayments.resx">
+      <DependentUpon>202104020103208_UpdatePayments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104020130015_FixBackPayments.resx">
+      <DependentUpon>202104020130015_FixBackPayments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104020221028_ChangePaymentTypeFromBoolToString.resx">
+      <DependentUpon>202104020221028_ChangePaymentTypeFromBoolToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104020310483_AddingDateAndTotal.resx">
+      <DependentUpon>202104020310483_AddingDateAndTotal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

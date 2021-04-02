@@ -166,7 +166,56 @@ namespace Gym.Controllers
 
         public ActionResult Payment()
         {
-            return View();
+            var MyCart = _context.ShoppingCart.Where(m => m.Name == User.Identity.Name).Where(m => m.State == true);
+
+            decimal total = 0;
+
+            foreach (var item in MyCart)
+            {
+                
+                total = total + item.Total;
+            }
+
+            var payment = new Payment()
+            {
+                Total = total, 
+                DatePurchase = DateTime.Today
+            };
+            return View("Payment_Form", payment);
+        }
+
+        [HttpPost]
+        public ActionResult SavePayment(Payment payment)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Payment_Form", payment);
+
+            }
+            else
+            {
+                _context.Payment.Add(payment);
+                
+
+
+                var MyCart = _context.ShoppingCart.Where(m => m.Name == User.Identity.Name).Where(m => m.State == true);
+
+                foreach (var item in MyCart)
+                {
+                    item.State = false;
+                }
+
+                _context.SaveChanges();
+
+                return RedirectToAction("SuccessfullPurchase", "Supplements");
+            }
+            
+        }
+
+        public ActionResult SuccessfullPurchase()
+        {
+
+            return View("Success");
         }
 
         [HttpPost]
