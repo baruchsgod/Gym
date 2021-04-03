@@ -155,7 +155,7 @@ textarea {
     display:flex;
     align-items:center;
     justify-content:center;
-    width:130px;
+    width:200px;
     padding:8px;
     border-radius:16px;
     margin:24px 0;
@@ -181,5 +181,10 @@ textarea {
 
     .event .event-left .event-date{
         padding: 10px 0;
+    }
+
+    .admin-cal {
+            margin-left: 10px;
+            
     }
 }

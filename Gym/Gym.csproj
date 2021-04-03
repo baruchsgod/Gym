@@ -258,6 +258,14 @@
     <Compile Include="Migrations\202104030205390_AddReserveAndMonthNum.Designer.cs">
       <DependentUpon>202104030205390_AddReserveAndMonthNum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104031758278_FormatDescriptionToInt.cs" />
+    <Compile Include="Migrations\202104031758278_FormatDescriptionToInt.Designer.cs">
+      <DependentUpon>202104031758278_FormatDescriptionToInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104031801551_FormatDescriptionBackToString.cs" />
+    <Compile Include="Migrations\202104031801551_FormatDescriptionBackToString.Designer.cs">
+      <DependentUpon>202104031801551_FormatDescriptionBackToString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -546,6 +554,8 @@
     <Content Include="Views\Activities\Create.cshtml" />
     <Content Include="Views\Activities\ExerciseForm.cshtml" />
     <Content Include="Views\Activities\ListExercise.cshtml" />
+    <Content Include="Views\Activities\CalendarAdmin.cshtml" />
+    <Content Include="Views\Activities\CalendarTrainer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -623,6 +633,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104030205390_AddReserveAndMonthNum.resx">
       <DependentUpon>202104030205390_AddReserveAndMonthNum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104031758278_FormatDescriptionToInt.resx">
+      <DependentUpon>202104031758278_FormatDescriptionToInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104031801551_FormatDescriptionBackToString.resx">
+      <DependentUpon>202104031801551_FormatDescriptionBackToString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

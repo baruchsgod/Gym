@@ -46,7 +46,7 @@
                     <div class="event-left">
                         <div class="event-date">
                             <div class="date">
-                                @item.day
+                                @now.Month
                             </div>
                             <div class="month">
                                 @item.Month
@@ -62,19 +62,7 @@
                             <p>Remaining Spaces: @item.Reserve</p>
                         </div>
                         <div class="event-timing">
-                            <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span><br />
-                            @if ((item.Quantity - item.Reserve) > 0)
-                            {
-                                if (item.Price > 0)
-                                {
-                                    @Html.ActionLink("Reserve", "Payment", "Activities")
-                                }
-                                else
-                                {
-
-                                }
-                            }
-
+                            <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span>
                         </div>
                     </div>
                 </div>
@@ -98,7 +86,7 @@
                                     <div class="event-left">
                                         <div class="event-date">
                                             <div class="date">
-                                                @item.day
+                                                @now.Month
                                             </div>
                                             <div class="month">
                                                 @item.Month
@@ -114,18 +102,7 @@
                                             <p>Remaining Spaces: @item.Reserve</p>
                                         </div>
                                         <div class="event-timing">
-                                            <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span><br />
-                                            @if ((item.Quantity - item.Reserve) > 0)
-                                            {
-                                                if (item.Price > 0)
-                                                {
-                                                    @Html.ActionLink("Reserve", "Payment", "Activities")
-                                                }
-                                                else
-                                                {
-
-                                                }
-                                            }
+                                            <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span>
                                         </div>
                                     </div>
                                 </div>
@@ -139,7 +116,7 @@
                                     <div class="event-left">
                                         <div class="event-date">
                                             <div class="date">
-                                                @item.day
+                                                @now.Month
                                             </div>
                                             <div class="month">
                                                 @item.Month
@@ -155,18 +132,7 @@
                                             <p>Remaining Spaces: @item.Reserve</p>
                                         </div>
                                         <div class="event-timing">
-                                            <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span><br />
-                                            @if ((item.Quantity - item.Reserve) > 0)
-                                            {
-                                                if (item.Price > 0)
-                                                {
-                                                    @Html.ActionLink("Reserve", "Payment", "Activities")
-                                                }
-                                                else
-                                                {
-
-                                                }
-                                            }
+                                            <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span>
                                         </div>
                                     </div>
                                 </div>

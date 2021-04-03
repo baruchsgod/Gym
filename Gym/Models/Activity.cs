@@ -19,6 +19,7 @@ namespace Gym.Models
         [Range(1,31)]
         public int day { get; set; }
 
+        [Required]
         [Display(Name = "Activity Name")]
         public string Description { get; set; }
 

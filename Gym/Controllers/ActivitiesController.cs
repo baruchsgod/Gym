@@ -59,12 +59,18 @@ namespace Gym.Controllers
                     }
                     else
                     {
+                        var idExercise = int.Parse(item.Description);
+
+                        if (item.Reserve == null)
+                        {
+                            item.Reserve = 0;
+                        }   
                         activities.Add(new Activity() { 
                             Id = item.Id,
                             Year = item.Year,
                             Month = item.Month,
                             day = item.day,
-                            Description = item.Description,
+                            Description = _context.Exercise.SingleOrDefault(m =>m.Id == idExercise).Name,
                             Quantity = item.Quantity,
                             Hour = item.Hour,
                             Minutes = item.Minutes,
@@ -78,8 +84,19 @@ namespace Gym.Controllers
                 }
 
             }
-
-            return View(activities);
+            if (User.IsInRole("Admin"))
+            {
+                return View("CalendarAdmin", activities);
+            }
+            else if (User.IsInRole("Trainer"))
+            {
+                return View("CalendarTrainer",activities);
+            }
+            else
+            {
+                return View(activities);
+            }
+            
         }
 
 

@@ -8,7 +8,7 @@
                   <div class="container">
                       <h3>Enter new Activity</h3>
                       <br />
-                      @using (Html.BeginForm("SaveActivity", "Activities"))
+                      @using (Html.BeginForm("SaveActivity", "Activities", new { @class = "form-horizontal" }))
                       {
                           <div class="row">
                               <div class="col-md-3">
