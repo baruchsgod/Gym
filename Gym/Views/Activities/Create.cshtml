@@ -1,0 +1,84 @@
+﻿@model Gym.ViewModel.ActivityViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br /><br /><br /><br />
+<div class="container">
+    <h3>Enter new Activity</h3>
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            @Html.LabelFor(m => m.Activity.Year, new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.Activity.Year, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Activity.Year, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(m => m.Activity.Month, new { @class = "form-label" })
+            @Html.DropDownListFor(m => m.Activity.Month, new List<SelectListItem> { new SelectListItem { Text = "January", Value = "January" }, new SelectListItem { Text = "February", Value = "February" }, new SelectListItem { Text = "March", Value = "March" }
+                , new SelectListItem { Text = "April", Value = "April" }, new SelectListItem { Text = "May", Value = "May" }, new SelectListItem { Text = "June", Value = "June" }, new SelectListItem { Text = "July", Value = "July" }
+                , new SelectListItem { Text = "August", Value = "August"} , new SelectListItem { Text = "September", Value = "September" } ,new SelectListItem { Text = "October", Value = "October" }, new SelectListItem { Text = "November", Value = "November" },
+                new SelectListItem { Text = "December", Value = "December" }}, new { @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(m => m.Activity.day, new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.Activity.day, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Activity.day, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br /><br />
+    <div class="row">
+        <div class="col-lg-4">
+            @Html.LabelFor(m => m.Activity.Description, new { @class = "form-label" })
+            @Html.DropDownListFor(m => m.Activity.Description, new SelectList(Model.Exercises, "Id", "Name"), "Select Activity Type", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Activity.Description, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(m => m.Activity.Quantity, new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.Activity.Quantity, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Activity.Quantity, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br /><br />
+          <div class="row">
+              <div class="col-md-3">
+                  @Html.LabelFor(m => m.Activity.Hour, new { @class = "form-label" })
+                  @Html.TextBoxFor(m => m.Activity.Hour, new { @class = "form-control" })
+                  @Html.ValidationMessageFor(m => m.Activity.Hour, "", new { @class = "text-danger" })
+              </div>
+              <div class="col-md-3">
+                  @Html.LabelFor(m => m.Activity.Minutes, new { @class = "form-label" })
+                  @Html.DropDownListFor(m => m.Activity.Minutes, new List<SelectListItem> { new SelectListItem { Text = "00", Value = "00" }, new SelectListItem { Text = "15", Value = "15" }, new SelectListItem { Text = "30", Value = "30" }
+                    , new SelectListItem { Text = "45", Value = "45" }}, new { @class = "form-control" })
+                  @Html.ValidationMessageFor(m => m.Activity.Minutes, "", new { @class = "text-danger" })
+              </div>
+              <div class="col-md-3">
+                  @Html.LabelFor(m => m.Activity.Shift, new { @class = "form-label" })
+                  @Html.DropDownListFor(m => m.Activity.Shift, new List<SelectListItem> { new SelectListItem { Text = "AM", Value = "AM" }, new SelectListItem { Text = "PM", Value = "PM" }}, new { @class = "form-control" })
+                  @Html.ValidationMessageFor(m => m.Activity.Shift, "", new { @class = "text-danger" })
+              </div>
+          </div>
+          <br /><br />
+          <div class="row">
+              <div class="col-lg-5">
+                  @Html.LabelFor(m => m.Activity.ApplicationUserId, new { @class = "form-label" })
+                  @Html.DropDownListFor(m => m.Activity.ApplicationUserId, new SelectList(Model.Trainers, "Id", "fName"), "Select Trainer", new { @class = "form-control" })
+                  @Html.ValidationMessageFor(m => m.Activity.ApplicationUserId, "", new { @class = "text-danger" })
+              </div>
+              <div class="col-md-4">
+                  @Html.LabelFor(m => m.Activity.Price, new { @class = "form-label" })
+                  @Html.TextBoxFor(m => m.Activity.Price, new { @class = "form-control" })
+                  @Html.ValidationMessageFor(m => m.Activity.Price, "", new { @class = "text-danger" })
+              </div>
+          </div>
+          <br />
+          <div class="row">
+              <div class="col-lg-9" style="text-align:center;">
+                  
+                      <input type="submit" value="Create" class="btn btn-success" />
+                 
+              </div>
+          </div>
+          
+</div>
+

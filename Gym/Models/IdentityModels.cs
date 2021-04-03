@@ -51,6 +51,12 @@ namespace Gym.Models
         public DbSet<ShoppingCart> ShoppingCart { get; set; }
 
         public DbSet<Payment> Payment { get; set; }
+
+        public DbSet<Purchase> Purchase { get; set; }
+
+        public DbSet<Activity> Activity { get; set; }
+
+        public DbSet<Exercise> Exercise { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

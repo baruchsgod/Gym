@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Gym.Models.Activity>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ 
+    var today = DateTime.Now;
+
+    var firstMonth = "";
+
+    var secondMonth = "";
+
+    switch (today.Month)
+    {
+        case 1: firstMonth = "January";secondMonth = "February"; break;
+        case 2: firstMonth = "February"; secondMonth = "March"; break;
+        case 3: firstMonth = "March"; secondMonth = "April"; break;
+        case 4: firstMonth = "April"; secondMonth = "May"; break;
+        case 5: firstMonth = "May"; secondMonth = "June"; break;
+        case 6: firstMonth = "June"; secondMonth = "July"; break;
+        case 7: firstMonth = "July"; secondMonth = "August"; break;
+        case 8: firstMonth = "August"; secondMonth = "September"; break;
+        case 9: firstMonth = "September"; secondMonth = "October"; break;
+        case 10: firstMonth = "October"; secondMonth = "November"; break;
+        case 11: firstMonth = "November"; secondMonth = "December"; break;
+        case 12: firstMonth = "December"; secondMonth = "January"; break;
+        default:
+            break;
+    }
+}
+
+
+<div class="container">
+    
+    <div class="event-container">
+        <br /><br /><br />
+        <h3 class="year">@firstMonth</h3>
+        @foreach (var item in Model)
+        {
+            var now = DateTime.Now;
+
+                if (item.MonthNum == now.Month && item.Year == now.Year)
+                {
+                    <div class="event">
+                        <div class="event-left">
+                            <div class="event-date">
+                                <div class="date">
+                                    8
+                                </div>
+                                <div class="month">
+                                    Nov
+                                </div>
+                            </div>
+                        </div>
+                        <div class="event-right">
+                            <h3 class="event-title">Some Title Here</h3>
+
+                            <div class="event-description">
+                                fake text
+                            </div>
+                            <div class="event-timing">
+                                <i class="fa fa-clock-o fa-2x"></i> 10 : 00 AM
+                            </div>
+                        </div>
+                    </div>
+                }
+            
+        }
+        
+    </div>
+</div>
+

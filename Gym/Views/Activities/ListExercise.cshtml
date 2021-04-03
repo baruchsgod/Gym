@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Gym.Models.Exercise>
+
+@{
+    ViewBag.Title = "ListExercise";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ListExercise</h2>
+
+<div class="container">
+    <br /><br />
+    <p>
+        @Html.ActionLink("Create New", "Exercise")
+    </p>
+    <table id="exercises" class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th> Actions </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditExercise", new { id = item.Id }) |
+
+                        @Html.ActionLink("Delete", "DeleteExercise", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+
+
+    </table>
+</div>
+
+
+
+@section scripts
+    {
+    <script>
+            $(document).ready(function () {
+
+                $("#exercises").DataTable();
+
+            });
+    </script>
+}
