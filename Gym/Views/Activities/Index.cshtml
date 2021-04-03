@@ -32,7 +32,7 @@
 
 
 <div class="container">
-    
+
     <div class="event-container">
         <br /><br /><br />
         <h3 class="year">@firstMonth</h3>
@@ -40,34 +40,108 @@
         {
             var now = DateTime.Now;
 
-                if (item.MonthNum == now.Month && item.Year == now.Year)
-                {
-                    <div class="event">
-                        <div class="event-left">
-                            <div class="event-date">
-                                <div class="date">
-                                    8
-                                </div>
-                                <div class="month">
-                                    Nov
-                                </div>
+            if (item.MonthNum == now.Month && item.Year == now.Year)
+            {
+                <div class="event">
+                    <div class="event-left">
+                        <div class="event-date">
+                            <div class="date">
+                                @now.Month
                             </div>
-                        </div>
-                        <div class="event-right">
-                            <h3 class="event-title">Some Title Here</h3>
-
-                            <div class="event-description">
-                                fake text
-                            </div>
-                            <div class="event-timing">
-                                <i class="fa fa-clock-o fa-2x"></i> 10 : 00 AM
+                            <div class="month">
+                                @item.Month
                             </div>
                         </div>
                     </div>
-                }
-            
+                    <div class="event-right">
+                        <h3 class="event-title">@item.Description</h3>
+
+                        <div class="event-description">
+                            <p>Capacity: @item.Quantity</p>
+                            <p>Price: @item.Price</p>
+                            <p>Remaining Spaces: @item.Reserve</p>
+                        </div>
+                        <div class="event-timing">
+                            <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span>
+                        </div>
+                    </div>
+                </div>
+            }
+            <br />
         }
-        
+
     </div>
+    <br /><br /><br />
+                <div class="event-container">
+                    <br /><br /><br />
+                    <h3 class="year">@secondMonth</h3>
+                    @foreach (var item in Model)
+                    {
+                        var now = DateTime.Now;
+                        if (now.Month != 12)
+                        {
+                            if (item.MonthNum == now.Month + 1 && item.Year == now.Year)
+                            {
+                                <div class="event">
+                                    <div class="event-left">
+                                        <div class="event-date">
+                                            <div class="date">
+                                                @now.Month
+                                            </div>
+                                            <div class="month">
+                                                @item.Month
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="event-right">
+                                        <h3 class="event-title">@item.Description</h3>
+
+                                        <div class="event-description">
+                                            <p>Capacity: @item.Quantity</p>
+                                            <p>Price: @item.Price</p>
+                                            <p>Remaining Spaces: @item.Reserve</p>
+                                        </div>
+                                        <div class="event-timing">
+                                            <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            if (item.MonthNum == 1 && item.Year == now.Year+1)
+                            {
+                                <div class="event">
+                                    <div class="event-left">
+                                        <div class="event-date">
+                                            <div class="date">
+                                                @now.Month
+                                            </div>
+                                            <div class="month">
+                                                @item.Month
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="event-right">
+                                        <h3 class="event-title">@item.Description</h3>
+
+                                        <div class="event-description">
+                                            <p>Capacity: @item.Quantity</p>
+                                            <p>Price: @item.Price</p>
+                                            <p>Remaining Spaces: @item.Reserve</p>
+                                        </div>
+                                        <div class="event-timing">
+                                            <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                        <br />
+                    }
+
+                </div>
 </div>
 

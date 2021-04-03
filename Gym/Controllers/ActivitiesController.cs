@@ -71,6 +71,7 @@ namespace Gym.Controllers
                             Shift = item.Shift,
                             ApplicationUserId = item.ApplicationUserId,
                             Price = item.Price,
+                            Reserve = item.Quantity - item.Reserve,
                             MonthNum = month
                         });
                     }
@@ -106,11 +107,40 @@ namespace Gym.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("Create", activity);
+                var users = _context.Users.ToList();
+                var viewModel = new ActivityViewModel()
+                {
+                    Activity = new Activity(),
+                    Exercises = _context.Exercise.ToList(),
+                    Trainers = users.Where(x => x.Roles.Select(role => role.RoleId).Contains("1aa6ef9e-d8e2-45f2-b359-4f882d26c250")).ToList()
+            };
+
+                return View("Create", viewModel);
             }
 
+            if (activity.Id == 0)
+            {
+                _context.Activity.Add(activity);
+            }
+            else
+            {
+                var Event = _context.Activity.SingleOrDefault(m => m.Id == activity.Id);
+                Event.Hour = activity.Hour;
+                Event.Year = activity.Year;
+                Event.Month = activity.Month;
+                Event.day = activity.day;
+                Event.Description = activity.Description;
+                Event.Quantity = activity.Quantity;
+                Event.Minutes = activity.Minutes;
+                Event.Shift = activity.Shift;
+                Event.ApplicationUserId = activity.ApplicationUserId;
+                Event.Price = activity.Price;
+                Event.Quantity = activity.Quantity;
+                Event.Reserve = activity.Reserve;
+            }
 
-            return View();
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Activities");
         }
 
         public ActionResult Exercise()
