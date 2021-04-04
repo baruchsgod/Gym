@@ -62,12 +62,12 @@
                             <p>Remaining Spaces: @item.Reserve</p>
                         </div>
                         <div class="event-timing">
-                            <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span><br />
+                            <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span>
                             @if ((item.Quantity - item.Reserve) > 0)
                             {
                                 if (item.Price > 0)
                                 {
-                                    @Html.ActionLink("Reserve", "Payment", "Activities")
+                                 <span style="margin-left:7px"> @Html.ActionLink("Reserve", "Payment", "Activities") </span>
                                 }
                                 else
                                 {
@@ -114,12 +114,12 @@
                                             <p>Remaining Spaces: @item.Reserve</p>
                                         </div>
                                         <div class="event-timing">
-                                            <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span><br />
+                                            <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span>
                                             @if ((item.Quantity - item.Reserve) > 0)
                                             {
                                                 if (item.Price > 0)
                                                 {
-                                                    @Html.ActionLink("Reserve", "Payment", "Activities")
+                                                    <span style="margin-left:7px"> @Html.ActionLink("Reserve", "Payment", "Activities") </span>
                                                 }
                                                 else
                                                 {
@@ -155,12 +155,12 @@
                                             <p>Remaining Spaces: @item.Reserve</p>
                                         </div>
                                         <div class="event-timing">
-                                            <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span><br />
+                                            <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span>
                                             @if ((item.Quantity - item.Reserve) > 0)
                                             {
                                                 if (item.Price > 0)
                                                 {
-                                                    @Html.ActionLink("Reserve", "Payment", "Activities")
+                                                    <span style="margin-left:7px"> @Html.ActionLink("Reserve", "Payment", "Activities") </span>
                                                 }
                                                 else
                                                 {
