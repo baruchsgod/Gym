@@ -1,0 +1,123 @@
+﻿@model Gym.ViewModel.ReserveViewModel
+
+@{
+    ViewBag.Title = "Payment_Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("ReservePayment", "Activities"))
+{
+    @Html.AntiForgeryToken()
+    
+    <h2>Make Payment</h2>
+
+    <div class="form-horizontal">
+        <h3>Payment</h3>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <hr class="my-4">
+        <h3>The total of your purchase is </h3>
+        <h4>Select Payment Type</h4>
+        <div class="my-3">
+            <div class="form-check">
+                @Html.RadioButtonFor(m => m.Payment.PaymentType, "CreditCard", new { @class = "form-check-input", @checked = true })
+                @Html.LabelFor(m => m.Payment.PaymentType, "Credit Card", new { @class = "form-check-label" })
+
+            </div>
+            <div class="form-check">
+                @Html.RadioButtonFor(m => m.Payment.PaymentType, "DebitCard", new { @class = "form-check-input" })
+                @Html.LabelFor(m => m.Payment.PaymentType, "Debit Card", new { @class = "form-check-label" })
+            </div>
+            <div class="form-check">
+                @Html.RadioButtonFor(m => m.Payment.PaymentType, "PayPal", new { @class = "form-check-input" })
+                @Html.LabelFor(m => m.Payment.PaymentType, "Pay Pal", new { @class = "form-check-label" })
+            </div>
+        </div>
+        <br />
+        <div class="gy-3">
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.Payment.NameCard, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Payment.NameCard, new { @class = "form-control" })
+
+                    <small class="text-muted">Full Name</small><br />
+
+                    @Html.ValidationMessageFor(m => m.Payment.NameCard, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.Payment.CardNumber, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Payment.CardNumber, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Payment.CardNumber, "",new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.Payment.ExpirationDate, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Payment.ExpirationDate, new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(m => m.Payment.ExpirationDate, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.Payment.Cvv, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Payment.Cvv, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Payment.Cvv, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+        </div>
+
+        <hr class="my-4">
+
+        <hr />
+
+        <h4>Required Information</h4>
+        <br />
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Payment.Address, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Payment.Address, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Payment.Address, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Payment.Province, new { @class = "form-label" })
+                @Html.DropDownListFor(m => m.Payment.Province, new List<SelectListItem> { new SelectListItem { Text = "San Jose", Value = "1" }, new SelectListItem { Text = "Alajuela", Value = "2" }, new SelectListItem { Text = "Cartago", Value = "3" }
+                , new SelectListItem { Text = "Heredia", Value = "4" }, new SelectListItem { Text = "Guanacaste", Value = "5" }, new SelectListItem { Text = "Puntarenas", Value = "6" }, new SelectListItem { Text = "Limón", Value = "7" }}, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Payment.City, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Payment.City, new { @class = "form-control" })
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Payment.Zip, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Payment.Zip, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Payment.Zip, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(m => m.Payment.Total, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Payment.Total, new { @class = "form-control" , @readonly = "readonly"})
+                
+            </div>
+        </div>
+
+        @Html.HiddenFor(m => m.Payment.DatePurchase)
+        @Html.HiddenFor(m => m.Activity.Id)
+        <br /><br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Payment" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "MyCart")
+</div>

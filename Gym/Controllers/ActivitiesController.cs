@@ -231,7 +231,25 @@ namespace Gym.Controllers
         [HttpPost]
         public ActionResult Reserve(int id)
         {
+            var activity = _context.Activity.SingleOrDefault(m => m.Id == id);
 
+            var reserve = new ReserveViewModel()
+            {
+                Activity = activity,
+                Payment = new Payment()
+                {
+                    Total = activity.Price,
+                    DatePurchase = DateTime.Today
+                }
+            };
+            return View("Payment_Form", reserve);
+            
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ReservePayment()
+        {
             return View();
         }
     }
