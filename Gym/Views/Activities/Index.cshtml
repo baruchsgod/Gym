@@ -59,7 +59,8 @@
                         <div class="event-description">
                             <p>Capacity: @item.Quantity</p>
                             <p>Price: @item.Price</p>
-                            <p>Remaining Spaces: @item.Reserve</p>
+                            @{var remaining = @item.Quantity - @item.Reserve;}
+                            <p>Remaining Spaces: @remaining</p>
                         </div>
                         <div class="event-timing">
                             <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span>
@@ -67,7 +68,7 @@
                             {
                                 if (item.Price > 0)
                                 {
-                                 <span style="margin-left:7px"> @Html.ActionLink("Reserve", "Payment", "Activities") </span>
+                                 <span style="margin-left:7px"> @Html.ActionLink("Reserve", "Reserve", "Activities", new { id = item.Id }) </span>
                                 }
                                 else
                                 {
@@ -111,7 +112,8 @@
                                         <div class="event-description">
                                             <p>Capacity: @item.Quantity</p>
                                             <p>Price: @item.Price</p>
-                                            <p>Remaining Spaces: @item.Reserve</p>
+                                            @{var remaining = @item.Quantity - @item.Reserve;}
+                                            <p>Remaining Spaces: @remaining</p>
                                         </div>
                                         <div class="event-timing">
                                             <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span>
@@ -119,7 +121,7 @@
                                             {
                                                 if (item.Price > 0)
                                                 {
-                                                    <span style="margin-left:7px"> @Html.ActionLink("Reserve", "Payment", "Activities") </span>
+                                                    <span style="margin-left:7px"> @Html.ActionLink("Reserve", "Reserve", "Activities", new { id = item.Id }) </span>
                                                 }
                                                 else
                                                 {
@@ -152,7 +154,8 @@
                                         <div class="event-description">
                                             <p>Capacity: @item.Quantity</p>
                                             <p>Price: @item.Price</p>
-                                            <p>Remaining Spaces: @item.Reserve</p>
+                                            @{var remaining = @item.Quantity - @item.Reserve;}
+                                            <p>Remaining Spaces: @remaining</p>
                                         </div>
                                         <div class="event-timing">
                                             <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span>
@@ -160,7 +163,7 @@
                                             {
                                                 if (item.Price > 0)
                                                 {
-                                                    <span style="margin-left:7px"> @Html.ActionLink("Reserve", "Payment", "Activities") </span>
+                                                    <span style="margin-left:7px"> @Html.ActionLink("Reserve", "Reserve", "Activities", new { id = item.Id }) </span>
                                                 }
                                                 else
                                                 {

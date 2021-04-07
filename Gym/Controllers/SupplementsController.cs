@@ -196,7 +196,7 @@ namespace Gym.Controllers
             {
                 _context.Payment.Add(payment);
 
-                
+                var newPurchase = new List<Purchase>();
 
                 var MyCart = _context.ShoppingCart.Where(m => m.Name == User.Identity.Name).Where(m => m.State == true);
 
@@ -204,19 +204,23 @@ namespace Gym.Controllers
                 {
                     item.State = false;
 
-                    var newPurchase= new Purchase 
-                    { 
+                    newPurchase.Add(new Purchase
+                    {
                         Quantity = item.Quantity,
                         Total = item.Total,
                         Date = DateTime.Today,
-                        ApplicationUser = item.ApplicationUser,
+                        ApplicationUserId = item.ApplicationUserId,
                         SupplementId = item.SupplementId
-                    };
-
-                    _context.Purchase.Add(newPurchase);
-                    _context.SaveChanges();
+                    });
                 }
 
+                for (int i = 0; i < newPurchase.Count; i++)
+                {
+                    _context.Purchase.Add(newPurchase.ElementAt(i));
+                    
+                }
+
+                _context.SaveChanges();
                 return RedirectToAction("SuccessfullPurchase", "Supplements");
             }
             

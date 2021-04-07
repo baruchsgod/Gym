@@ -63,7 +63,7 @@ namespace Gym.Controllers
 
                         if (item.Reserve == null)
                         {
-                            item.Reserve = 0;
+                            item.Reserve = item.Quantity;
                         }   
                         activities.Add(new Activity() { 
                             Id = item.Id,
@@ -226,6 +226,13 @@ namespace Gym.Controllers
 
             _context.SaveChanges();
             return RedirectToAction("ListExercise", "Activities");
+        }
+
+        [HttpPost]
+        public ActionResult Reserve(int id)
+        {
+
+            return View();
         }
     }
 }
