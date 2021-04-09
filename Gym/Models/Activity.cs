@@ -23,7 +23,7 @@ namespace Gym.Models
         [Display(Name = "Activity Name")]
         public string Description { get; set; }
 
-        [Range(1,25)]
+        [MinActivityQuantity]
         public int Quantity { get; set; }
 
         [Range(1,12)]

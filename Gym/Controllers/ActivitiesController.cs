@@ -252,5 +252,41 @@ namespace Gym.Controllers
         {
             return View();
         }
+
+        public ActionResult EditActivity(int id)
+        {
+            var exercises = _context.Exercise.ToList();
+
+            var users = _context.Users.ToList();
+
+            var trainers = users.Where(x => x.Roles.Select(role => role.RoleId).Contains("1aa6ef9e-d8e2-45f2-b359-4f882d26c250")).ToList();
+
+            var viewModel = new ActivityViewModel()
+            {
+                Activity = _context.Activity.SingleOrDefault(m =>m.Id == id),
+                Exercises = exercises,
+                Trainers = trainers
+            };
+
+            return View("Create",viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteActivity(int id)
+        {
+            var activity = _context.Activity.SingleOrDefault(m => m.Id == id);
+
+            if (activity == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                _context.Activity.Remove(activity);
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Activities");
+        }
     }
 }
