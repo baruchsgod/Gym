@@ -59,21 +59,25 @@
                         <div class="event-description">
                             <p>Capacity: @item.Quantity</p>
                             <p>Price: @item.Price</p>
-                            @{var remaining = @item.Quantity - @item.Reserve;}
-                            <p>Remaining Spaces: @remaining</p>
+                            
+                            <p>Remaining Spaces: @item.Reserve</p>
                         </div>
                         <div class="event-timing">
                             <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span>
-                            @if ((item.Quantity - item.Reserve) > 0)
+                            @if (item.Reserve > 0)
                             {
                                 if (item.Price > 0)
                                 {
-                                 <span style="margin-left:7px"> @Html.ActionLink("Reserve", "Reserve", "Activities", new { id = item.Id }) </span>
+                                    <span style="margin-left:7px"> <button class="btn-link"><a href="/Activities/ReserveEvent/@item.Id">Reserve</a></button> </span>
                                 }
                                 else
                                 {
 
                                 }
+                            }
+                            else
+                            {
+                                <span style="margin-left:7px"> <p>Full Capacity</p> </span>
                             }
 
                         </div>
@@ -112,21 +116,25 @@
                                         <div class="event-description">
                                             <p>Capacity: @item.Quantity</p>
                                             <p>Price: @item.Price</p>
-                                            @{var remaining = @item.Quantity - @item.Reserve;}
-                                            <p>Remaining Spaces: @remaining</p>
+                                           
+                                            <p>Remaining Spaces: @item.Reserve</p>
                                         </div>
                                         <div class="event-timing">
                                             <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span>
-                                            @if ((item.Quantity - item.Reserve) > 0)
+                                            @if (item.Reserve > 0)
                                             {
                                                 if (item.Price > 0)
                                                 {
-                                                    <span style="margin-left:7px"> @Html.ActionLink("Reserve", "Reserve", "Activities", new { id = item.Id }) </span>
+                                                    <span style="margin-left:7px"> <button class="btn-link"><a href="/Activities/ReserveEvent/@item.Id">Reserve</a></button> </span>
                                                 }
                                                 else
                                                 {
 
                                                 }
+                                            }
+                                            else
+                                            {
+                                                <span style="margin-left:7px"> <p>Full Capacity</p> </span>
                                             }
                                         </div>
                                     </div>
@@ -154,21 +162,25 @@
                                         <div class="event-description">
                                             <p>Capacity: @item.Quantity</p>
                                             <p>Price: @item.Price</p>
-                                            @{var remaining = @item.Quantity - @item.Reserve;}
-                                            <p>Remaining Spaces: @remaining</p>
+                                            
+                                            <p>Remaining Spaces: @item.Reserve</p>
                                         </div>
                                         <div class="event-timing">
                                             <i class="fa fa-clock-o fa-2x"></i> <span style="margin-left:5px;">@item.Hour : @item.Minutes @item.Shift</span>
-                                            @if ((item.Quantity - item.Reserve) > 0)
+                                            @if (item.Reserve > 0)
                                             {
                                                 if (item.Price > 0)
                                                 {
-                                                    <span style="margin-left:7px"> @Html.ActionLink("Reserve", "Reserve", "Activities", new { id = item.Id }) </span>
+                                                    <span style="margin-left:7px"> <button class="btn-link"><a href="/Activities/ReserveEvent/@item.Id">Reserve</a></button> </span>
                                                 }
                                                 else
                                                 {
 
                                                 }
+                                            }
+                                            else
+                                            {
+                                                <span style="margin-left:7px;"> <p style="margin:0;">Full Capacity</p> </span>
                                             }
                                         </div>
                                     </div>

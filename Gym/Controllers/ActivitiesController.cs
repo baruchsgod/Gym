@@ -63,7 +63,7 @@ namespace Gym.Controllers
 
                         if (item.Reserve == null)
                         {
-                            item.Reserve = item.Quantity;
+                            item.Reserve = 0;
                         }   
                         activities.Add(new Activity() { 
                             Id = item.Id,
@@ -287,6 +287,89 @@ namespace Gym.Controllers
 
             _context.SaveChanges();
             return RedirectToAction("Index", "Activities");
+        }
+
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ReserveActivity(PaymentActivityViewModel paymentActivity)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Payment_Form", paymentActivity);
+            }
+
+            var activity = _context.Activity.SingleOrDefault(m => m.Id == paymentActivity.Activity.Id);
+
+            if (activity == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                var userEmail = User.Identity.Name;
+
+                var user = _context.Users.SingleOrDefault(m => m.Email == userEmail);
+
+                var reserve = new Reserve()
+                {
+                    ActivityId = paymentActivity.Activity.Id,
+                    ApplicationUserId = user.Id,
+                    Date = DateTime.Today
+                };
+
+                _context.Payment.Add(paymentActivity.Payment);
+                _context.Reserve.Add(reserve);
+
+                if (activity.Reserve == null)
+                {
+                    activity.Reserve = 1;
+                }
+                else
+                {
+                    activity.Reserve = activity.Reserve + 1;
+                }
+
+                _context.SaveChanges();
+                return RedirectToAction("SuccessfullReserve", "Activities", new { id = paymentActivity.Activity.Id });
+            }
+            
+        }
+
+        [HttpGet]
+        public ActionResult ReserveEvent(int id)
+        {
+            var activity = _context.Activity.SingleOrDefault(m => m.Id == id);
+
+            var viewModel = new PaymentActivityViewModel()
+            {
+                Payment = new Payment()
+                {
+                    Total = activity.Price,
+                    DatePurchase = DateTime.Today
+                },
+                Activity = activity
+            };
+
+            return View("Payment_Form", viewModel);
+
+        }
+
+        [HttpGet]
+        public ActionResult SuccessfullReserve(int id)
+        {
+            var activity = _context.Activity.SingleOrDefault(m => m.Id == id);
+
+            if (activity == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+
+                return View("Success", activity);
+            }
+            
         }
     }
 }

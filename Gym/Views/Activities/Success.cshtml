@@ -1,0 +1,23 @@
+﻿@model Gym.Models.Activity
+
+@{
+    ViewBag.Title = "Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="home_fourth">
+    <div class="container">
+        <h1 class="paragraph">Your Event is waiting for you now!!</h1>
+        <h3>Details</h3>
+        
+        <h4>Month: @Model.Month</h4>
+        <h4>Day: @Model.day</h4>
+        <h4>Hour: @Model.Hour : @Model.Minutes @Model.Shift</h4>
+        <div class="div_border" style="border-bottom: 3px solid #fff"></div>
+        <br /><br />
+
+    </div>
+</div>
+

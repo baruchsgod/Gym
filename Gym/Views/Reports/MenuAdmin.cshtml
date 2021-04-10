@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "MenuAdmin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Menu</h2>
+<br />
+<br />
+
+
+<div class="container">
+    <h3>Menu of Actions</h3>
+    <br /><br />
+          <ul class="list-group">
+              <li class="list-group-item">@Html.ActionLink("Check Reserves", "Index", "Users")</li>
+              <li class="list-group-item">@Html.ActionLink("View Payments", "Create", "Users")</li>
+              <li class="list-group-item">@Html.ActionLink("View Events", "CreateCustomer", "Users")</li>
+              <li class="list-group-item">@Html.ActionLink("View Purchases", "EditTrainer", "Users")</li>
+              <li class="list-group-item">@Html.ActionLink("View Client Metrics", "EditCustomer", "Users")</li>
+              <li class="list-group-item">@Html.ActionLink("View Client Routines", "EditCustomer", "Users")</li>
+          </ul>
+</div>
+

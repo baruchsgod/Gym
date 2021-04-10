@@ -12,6 +12,8 @@ namespace Gym.Models
         {
             var activity = (Activity)validationContext.ObjectInstance;
 
+            
+
             if (activity.Id == 0)
             {
                 if (activity.Quantity == null)
@@ -29,7 +31,11 @@ namespace Gym.Models
             }
             else
             {
-                var minimumQuantity = activity.Reserve;
+
+
+                
+                
+                
 
                 if (activity.Quantity == null)
                 {
@@ -40,6 +46,14 @@ namespace Gym.Models
                 {
                     return new ValidationResult("The maximum capacity of every room is 25 and the mininum is 1");
                 }
+
+                var minimumQuantity = activity.Reserve;
+
+                if (activity.Reserve == null)
+                {
+                    minimumQuantity = 0;
+                }
+                
 
                 if (activity.Quantity < minimumQuantity)
                 {

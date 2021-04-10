@@ -57,6 +57,10 @@ namespace Gym.Models
         public DbSet<Activity> Activity { get; set; }
 
         public DbSet<Exercise> Exercise { get; set; }
+
+        public DbSet<Reserve> Reserve { get; set; }
+
+        public DbSet<Routine> Routine { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

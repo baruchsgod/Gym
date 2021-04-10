@@ -1,4 +1,4 @@
-﻿@model Gym.ViewModel.ReserveViewModel
+﻿@model Gym.ViewModel.PaymentActivityViewModel
 
 @{
     ViewBag.Title = "Payment_Form";
@@ -7,7 +7,7 @@
 
 
 
-@using (Html.BeginForm("ReservePayment", "Activities"))
+@using (Html.BeginForm("ReserveActivity", "Activities"))
 {
     @Html.AntiForgeryToken()
     
@@ -49,7 +49,7 @@
                 <div class="col-md-3">
                     @Html.LabelFor(m => m.Payment.CardNumber, new { @class = "form-label" })
                     @Html.TextBoxFor(m => m.Payment.CardNumber, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Payment.CardNumber, "",new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(m => m.Payment.CardNumber, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -102,13 +102,24 @@
             </div>
             <div class="col-md-2">
                 @Html.LabelFor(m => m.Payment.Total, new { @class = "form-label" })
-                @Html.TextBoxFor(m => m.Payment.Total, new { @class = "form-control" , @readonly = "readonly"})
-                
+                @Html.TextBoxFor(m => m.Payment.Total, new { @class = "form-control", @readonly = "readonly" })
+
             </div>
         </div>
 
         @Html.HiddenFor(m => m.Payment.DatePurchase)
         @Html.HiddenFor(m => m.Activity.Id)
+        @Html.HiddenFor(m => m.Activity.Year)
+        @Html.HiddenFor(m => m.Activity.Month)
+        @Html.HiddenFor(m => m.Activity.day)
+        @Html.HiddenFor(m => m.Activity.Description)
+        @Html.HiddenFor(m => m.Activity.Quantity)
+        @Html.HiddenFor(m => m.Activity.Hour)
+        @Html.HiddenFor(m => m.Activity.Minutes)
+        @Html.HiddenFor(m => m.Activity.Shift)
+        @Html.HiddenFor(m => m.Activity.ApplicationUserId)
+        @Html.HiddenFor(m => m.Activity.Price)
+
         <br /><br />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -119,5 +130,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "MyCart")
+    @Html.ActionLink("Back to List", "Index")
 </div>
