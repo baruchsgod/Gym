@@ -283,6 +283,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Membership.cs" />
+    <Compile Include="Models\Metric.cs" />
     <Compile Include="Models\MinActivityQuantity.cs" />
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Purchase.cs" />
