@@ -61,6 +61,8 @@ namespace Gym.Models
         public DbSet<Reserve> Reserve { get; set; }
 
         public DbSet<Routine> Routine { get; set; }
+
+        public DbSet<Metric> Metric { get; set; } 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

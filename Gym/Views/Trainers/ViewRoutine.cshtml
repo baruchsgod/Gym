@@ -1,0 +1,93 @@
+﻿@model Gym.Models.Routine
+@{
+    ViewBag.Title = "RoutineForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("SaveRoutine", "Trainers"))
+{
+
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal" id="routineForm">
+        <br /><br /><br /><br /><br />
+        <h3>  Routine Details for customer:</h3>
+
+        @Html.TextBoxFor(m => m.ApplicationUser.Email, new { @class = "form-control", @readonly = "readonly" })
+        <hr class="my-4">
+        <h4>Select Routine Type</h4>
+        <div class="my-3">
+            <div class="">
+
+                @Html.LabelFor(m => m.Type, new { @class = "form-check-label" })
+                @Html.TextBoxFor(m => m.Type, new { @class = "form-control", @readonly = "readonly" })
+
+            </div>
+            
+        </div>
+        <br />
+        <hr class="my-4">
+        <div class="gy-3">
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.BeginWeek, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.BeginWeek, new { @class = "form-control", @readonly = "readonly" })
+                   
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.EndWeek, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.EndWeek, new { @class = "form-control", @readonly = "readonly" })
+                  
+                </div>
+            </div>
+        </div>
+        <br />
+        <hr class="my-4">
+        <div>
+            <div class="mar-container">
+                <div class="row">
+                    <div class="col-md-4">
+                        @Html.LabelFor(m => m.WarmUp, new { @class = "form-label" })
+                        @Html.TextAreaFor(m => m.WarmUp, new { @class = "form-control input-lg", @readonly = "readonly" })
+                       
+                    </div>
+                    <div class="col-md-4">
+                        @Html.LabelFor(m => m.CoreBody, new { @class = "form-label" })
+                        @Html.TextAreaFor(m => m.CoreBody, new { @class = "form-control input-lg", @readonly = "readonly" })
+                       
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-4">
+                        @Html.LabelFor(m => m.UpperBody, new { @class = "form-label" })
+                        @Html.TextAreaFor(m => m.UpperBody, new { @class = "form-control input-lg", @readonly = "readonly" })
+                        
+                    </div>
+                    <div class="col-md-4">
+                        @Html.LabelFor(m => m.LowerBody, new { @class = "form-label" })
+                        @Html.TextAreaFor(m => m.LowerBody, new { @class = "form-control input-lg", @readonly = "readonly" })
+                        
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-4">
+                        @Html.LabelFor(m => m.CoolDown, new { @class = "form-label" })
+                        @Html.TextAreaFor(m => m.CoolDown, new { @class = "form-control input-lg", @readonly = "readonly" })
+                       
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <br /><br />
+      
+        
+
+
+    </div>
+}
+
+

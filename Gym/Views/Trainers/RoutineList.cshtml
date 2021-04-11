@@ -1,0 +1,110 @@
+﻿@model IEnumerable < Gym.Models.Routine>
+@{
+    ViewBag.Title = "RoutineList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<div class="container">
+    <br /><br /><br />
+    <p>
+        @Html.ActionLink("Create Routine", "ValidateClient")
+        <br /><br />
+    </p>
+    <table class="table" id="routines">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(m => m.ApplicationUser.fName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.ApplicationUser.lName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.BeginWeek)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.EndWeek)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Date)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+            <tr id=@item.Id>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.lName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BeginWeek)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndWeek)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    <button class="btn-link">@Html.ActionLink("Edit", "EditRoutine", "Trainers", new { id = item.Id, ced = item.ApplicationUser.cedula }, new { @class = "remove_text_decoration" })</button> |
+                    <button class="btn-link">@Html.ActionLink("Details", "ViewRoutine", "Trainers", new { id = item.Id, ced = item.ApplicationUser.cedula }, new { @class = "remove_text_decoration" })</button> |
+                    <button class="btn-link js-delete remove_text_decoration" data-membership-id=@item.Id>Delete</button>
+                </td>
+            </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" style="text-align:center">There are not active routines for any customer right now</td>
+                </tr>
+            }
+        </tbody>
+
+
+
+    </table>
+</div>
+
+@section scripts
+    {
+    <script>
+            $(document).ready(function () {
+
+                $("#routines").DataTable();
+
+                $("#routines ").on("click", ".js-delete",function () {
+                    var button = $(this);
+                    var tableRow = "#" + button.attr("data-membership-id");
+                    console.log(button);
+
+                    bootbox.confirm("Are you sure you want to delete this routine?", function (result) {
+                        if (result) {
+                            $.ajax({
+
+                                url: "/Trainers/DeleteRoutine/" + button.attr("data-membership-id"),
+                                method: "POST",
+                                success: function () { $(tableRow).remove(); },
+                                error: function () { bootbox.alert("There was a problem deleting this item at this moment"); }
+                            });
+                        }
+                    });
+
+                });
+            });
+    </script>
+}
+
+

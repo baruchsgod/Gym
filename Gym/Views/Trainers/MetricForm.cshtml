@@ -1,0 +1,127 @@
+﻿@model Gym.ViewModel.CustomerMetricViewModel
+
+@{
+    ViewBag.Title = "MetricForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MetricForm</h2>
+
+@using (Html.BeginForm("SaveMetric", "Trainers")) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <br /><br />
+    <h3>  Metric details for customer:</h3>
+
+    @Html.TextBoxFor(m => m.User.Email, new { @class = "form-control", @readonly = "readonly" })
+    <hr class="my-4">
+
+    <h4>Metric</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Metric.MassIndex, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Metric.MassIndex, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Metric.MassIndex, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Metric.Weight, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Metric.Weight, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Metric.Weight, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Metric.Chest, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Metric.Chest, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Metric.Chest, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Metric.Waist, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Metric.Waist, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Metric.Waist, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Metric.RightBicep, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Metric.RightBicep, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Metric.RightBicep, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Metric.LeftBicep, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Metric.LeftBicep, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Metric.LeftBicep, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Metric.RightCalf, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Metric.RightCalf, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Metric.RightCalf, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Metric.LeftCalf, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Metric.LeftCalf, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Metric.LeftCalf, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.Metric.Year, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Metric.Year, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Metric.Year, "", new { @class = "text-danger" })
+        </div>
+
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Metric.Month, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.Metric.Month, new List<SelectListItem> { new SelectListItem { Text = "January", Value = "January" }, new SelectListItem { Text = "February", Value = "February" }, new SelectListItem { Text = "March", Value = "March" }
+        , new SelectListItem { Text = "April", Value = "April" }, new SelectListItem { Text = "May", Value = "May" }, new SelectListItem { Text = "June", Value = "June" }, new SelectListItem { Text = "July", Value = "July" }
+        ,new SelectListItem { Text = "August", Value = "August" },new SelectListItem { Text = "September", Value = "September" },new SelectListItem { Text = "October", Value = "October" }, new SelectListItem { Text = "November", Value = "November" }
+        ,new SelectListItem { Text = "December", Value = "December" }}, new { @class = "form-control" })
+        </div>
+        
+    </div>
+    
+
+    <div class="form-group">
+        @Html.HiddenFor(m => m.Metric.Date)
+    </div>
+    @if (Model.Metric.Id > 0)
+    {
+        @Html.HiddenFor(model => model.Metric.Id)
+    }
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

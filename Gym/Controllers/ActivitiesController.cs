@@ -124,15 +124,36 @@ namespace Gym.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var users = _context.Users.ToList();
-                var viewModel = new ActivityViewModel()
+                if (activity.Id == 0)
                 {
-                    Activity = new Activity(),
-                    Exercises = _context.Exercise.ToList(),
-                    Trainers = users.Where(x => x.Roles.Select(role => role.RoleId).Contains("1aa6ef9e-d8e2-45f2-b359-4f882d26c250")).ToList()
-            };
+                    var users = _context.Users.ToList();
+                    var viewModel = new ActivityViewModel()
+                    {
+                        Activity = new Activity(),
+                        Exercises = _context.Exercise.ToList(),
+                        Trainers = users.Where(x => x.Roles.Select(role => role.RoleId).Contains("1aa6ef9e-d8e2-45f2-b359-4f882d26c250")).ToList()
+                    };
 
-                return View("Create", viewModel);
+                    return View("Create", viewModel);
+                }
+                else
+                {
+                    var exercises = _context.Exercise.ToList();
+
+                    var users = _context.Users.ToList();
+
+                    var trainers = users.Where(x => x.Roles.Select(role => role.RoleId).Contains("1aa6ef9e-d8e2-45f2-b359-4f882d26c250")).ToList();
+
+                    var viewModel = new ActivityViewModel()
+                    {
+                        Activity = _context.Activity.SingleOrDefault(m => m.Id == activity.Id),
+                        Exercises = exercises,
+                        Trainers = trainers
+                    };
+
+                    return View("Create", viewModel);
+                }
+                
             }
 
             if (activity.Id == 0)

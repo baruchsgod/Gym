@@ -1,0 +1,124 @@
+﻿@model Gym.ViewModel.CustomerRoutineViewModel
+@{
+    ViewBag.Title = "RoutineForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("SaveRoutine", "Trainers"))
+{
+    
+    @Html.AntiForgeryToken()
+<div class="form-horizontal" id="routineForm">
+    <br /><br /><br /><br /><br />
+    <h3>  Routine Details for customer:</h3>
+
+    @Html.TextBoxFor(m => m.User.Email, new { @class = "form-control", @readonly = "readonly" })
+    <hr class="my-4">
+    <h4>Select Routine Type</h4>
+    <div class="my-3">
+        <div class="form-check">
+            @Html.RadioButtonFor(m => m.Routine.Type, "Burning Fat", new { @class = "form-check-input", @checked = true })
+            @Html.LabelFor(m => m.Routine.Type, "Burning Fat", new { @class = "form-check-label" })
+
+        </div>
+        <div class="form-check">
+            @Html.RadioButtonFor(m => m.Routine.Type, "Build Muscle", new { @class = "form-check-input" })
+            @Html.LabelFor(m => m.Routine.Type, "Build Muscle", new { @class = "form-check-label" })
+        </div>
+        <div class="form-check">
+            @Html.RadioButtonFor(m => m.Routine.Type, "Athletic", new { @class = "form-check-input" })
+            @Html.LabelFor(m => m.Routine.Type, "Athletic", new { @class = "form-check-label" })
+        </div>
+        <div class="form-check">
+            @Html.RadioButtonFor(m => m.Routine.Type, "Recreational", new { @class = "form-check-input" })
+            @Html.LabelFor(m => m.Routine.Type, "Recreational", new { @class = "form-check-label" })
+        </div>
+    </div>
+    <br />
+    <hr class="my-4">
+    <div class="gy-3">
+        <div class="row">
+            <div class="col-md-4">
+                @Html.LabelFor(m => m.Routine.BeginWeek, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Routine.BeginWeek, new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(m => m.Routine.BeginWeek, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(m => m.Routine.EndWeek, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Routine.EndWeek, new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(m => m.Routine.EndWeek, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <br />
+    <hr class="my-4">
+    <div>
+        <div class="mar-container">
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Routine.WarmUp, new { @class = "form-label" })
+                    @Html.TextAreaFor(m => m.Routine.WarmUp, new { @class = "form-control input-lg" })
+                    @Html.ValidationMessageFor(m => m.Routine.WarmUp, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Routine.CoreBody, new { @class = "form-label" })
+                    @Html.TextAreaFor(m => m.Routine.CoreBody, new { @class = "form-control input-lg" })
+                    @Html.ValidationMessageFor(m => m.Routine.CoreBody, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Routine.UpperBody, new { @class = "form-label" })
+                    @Html.TextAreaFor(m => m.Routine.UpperBody, new { @class = "form-control input-lg" })
+                    @Html.ValidationMessageFor(m => m.Routine.UpperBody, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Routine.LowerBody, new { @class = "form-label" })
+                    @Html.TextAreaFor(m => m.Routine.LowerBody, new { @class = "form-control input-lg" })
+                    @Html.ValidationMessageFor(m => m.Routine.LowerBody, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Routine.CoolDown, new { @class = "form-label" })
+                    @Html.TextAreaFor(m => m.Routine.CoolDown, new { @class = "form-control input-lg" })
+                    @Html.ValidationMessageFor(m => m.Routine.CoolDown, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <br /><br />
+    @if (Model.Routine.Id > 0)
+    {
+        @Html.HiddenFor(model => model.Routine.Id)
+    }
+    <div class="row" style="text-align:center">
+        <div class="col-lg-6">
+            <input type="submit" value="Create" class="btn btn-success" />
+        </div>
+    </div>
+
+    <hr class="my-4">
+    @Html.HiddenFor(m => m.Routine.Date)
+    @Html.HiddenFor(m => m.User.Id)
+    @Html.HiddenFor(m => m.User.PhoneNumberConfirmed)
+    @Html.HiddenFor(m => m.User.EmailConfirmed)
+    @Html.HiddenFor(m => m.User.TwoFactorEnabled)
+    @Html.HiddenFor(m => m.User.LockoutEnabled)
+    @Html.HiddenFor(m => m.User.AccessFailedCount)
+    @Html.HiddenFor(m => m.User.UserName)
+    @Html.HiddenFor(m => m.User.cedula)
+    @Html.HiddenFor(m => m.User.fName)
+    @Html.HiddenFor(m => m.User.lName)
+    @Html.HiddenFor(m => m.User.Telefono)
+
+
+</div>
+}
+
+

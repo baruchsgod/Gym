@@ -275,6 +275,38 @@
     <Compile Include="Migrations\202104101804331_AddRoutine.Designer.cs">
       <DependentUpon>202104101804331_AddRoutine.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104111535057_AddMetricTable.cs" />
+    <Compile Include="Migrations\202104111535057_AddMetricTable.Designer.cs">
+      <DependentUpon>202104111535057_AddMetricTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104111548191_UpdateRoutineTable.cs" />
+    <Compile Include="Migrations\202104111548191_UpdateRoutineTable.Designer.cs">
+      <DependentUpon>202104111548191_UpdateRoutineTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104111552408_AddDateToRoutine.cs" />
+    <Compile Include="Migrations\202104111552408_AddDateToRoutine.Designer.cs">
+      <DependentUpon>202104111552408_AddDateToRoutine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104112133380_UpdateDateRoutine.cs" />
+    <Compile Include="Migrations\202104112133380_UpdateDateRoutine.Designer.cs">
+      <DependentUpon>202104112133380_UpdateDateRoutine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104112203315_ReverseUpdatDateRoutine.cs" />
+    <Compile Include="Migrations\202104112203315_ReverseUpdatDateRoutine.Designer.cs">
+      <DependentUpon>202104112203315_ReverseUpdatDateRoutine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104112238409_UpdateDateInMetric.cs" />
+    <Compile Include="Migrations\202104112238409_UpdateDateInMetric.Designer.cs">
+      <DependentUpon>202104112238409_UpdateDateInMetric.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104112305407_UpdateMetricTable.cs" />
+    <Compile Include="Migrations\202104112305407_UpdateMetricTable.Designer.cs">
+      <DependentUpon>202104112305407_UpdateMetricTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104112320040_UpdateMetric_v2.cs" />
+    <Compile Include="Migrations\202104112320040_UpdateMetric_v2.Designer.cs">
+      <DependentUpon>202104112320040_UpdateMetric_v2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -295,6 +327,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ActivityViewModel.cs" />
+    <Compile Include="ViewModel\CustomerMetricViewModel.cs" />
+    <Compile Include="ViewModel\CustomerRoutineViewModel.cs" />
     <Compile Include="ViewModel\PaymentActivityViewModel.cs" />
     <Compile Include="ViewModel\ReserveViewModel.cs" />
     <Compile Include="ViewModel\ShoppingCartViewModel.cs" />
@@ -576,6 +610,14 @@
     <Content Include="Views\Reports\MenuAdmin.cshtml" />
     <Content Include="Views\Reports\MenuTrainer.cshtml" />
     <Content Include="Views\Reports\Menu.cshtml" />
+    <Content Include="Views\Trainers\RoutineForm.cshtml" />
+    <Content Include="Views\Trainers\ValidateClient.cshtml" />
+    <Content Include="Views\Trainers\RoutineList.cshtml" />
+    <Content Include="Views\Trainers\ViewRoutine.cshtml" />
+    <Content Include="Views\Trainers\ValidateMetric.cshtml" />
+    <Content Include="Views\Trainers\MetricForm.cshtml" />
+    <Content Include="Views\Trainers\MetricList.cshtml" />
+    <Content Include="Views\Trainers\ViewMetric.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -665,6 +707,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104101804331_AddRoutine.resx">
       <DependentUpon>202104101804331_AddRoutine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104111535057_AddMetricTable.resx">
+      <DependentUpon>202104111535057_AddMetricTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104111548191_UpdateRoutineTable.resx">
+      <DependentUpon>202104111548191_UpdateRoutineTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104111552408_AddDateToRoutine.resx">
+      <DependentUpon>202104111552408_AddDateToRoutine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104112133380_UpdateDateRoutine.resx">
+      <DependentUpon>202104112133380_UpdateDateRoutine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104112203315_ReverseUpdatDateRoutine.resx">
+      <DependentUpon>202104112203315_ReverseUpdatDateRoutine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104112238409_UpdateDateInMetric.resx">
+      <DependentUpon>202104112238409_UpdateDateInMetric.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104112305407_UpdateMetricTable.resx">
+      <DependentUpon>202104112305407_UpdateMetricTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104112320040_UpdateMetric_v2.resx">
+      <DependentUpon>202104112320040_UpdateMetric_v2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

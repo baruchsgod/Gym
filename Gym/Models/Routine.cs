@@ -22,27 +22,30 @@ namespace Gym.Models
 
         [Required]
         [Display(Name = "Warm Up Workout")]
-        public List<string> WarmUp { get; set; }
+        public string WarmUp { get; set; }
 
         [Required]
         [Display(Name = "Core Body Workout")]
-        public List<string> CoreBody { get; set; }
+        public string CoreBody { get; set; }
 
         [Required]
         [Display(Name = "Upper Body Workout")]
-        public List<string> UpperBody { get; set; }
+        public string UpperBody { get; set; }
 
         [Required]
         [Display(Name = "Lower Body Workout")]
-        public List<string> LowerBody { get; set; }
+        public string LowerBody { get; set; }
 
         [Required]
         [Display(Name = "Cool Down Workout")]
-        public List<string> CoolDown { get; set; }
+        public string CoolDown { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
 
         [Display(Name = "User Id")]
         public string ApplicationUserId { get; set; }
+
+        [Display(Name = "Creation Date")]
+        public DateTime Date { get; set; }
     }
 }
