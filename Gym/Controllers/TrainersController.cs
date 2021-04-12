@@ -66,12 +66,15 @@ namespace Gym.Controllers
 
         public ActionResult CreateMetric(string ced)
         {
+            var user = _context.Users.SingleOrDefault(m => m.cedula == ced);
             var viewModel = new CustomerMetricViewModel()
             {
-                User = _context.Users.SingleOrDefault(m => m.cedula == ced),
+                User = user,
                 Metric = new Metric()
                 {
-                    Date = DateTime.Now
+
+                    Date = DateTime.Now,
+                    ApplicationUserId = user.Id
                 }
             };
 
@@ -223,12 +226,12 @@ namespace Gym.Controllers
             {
                 if (customerMetric.Metric.Id == 0)
                 {
-                    var viewModel = new CustomerRoutineViewModel()
+                    var viewModel = new CustomerMetricViewModel()
                     {
                         User = _context.Users.SingleOrDefault(m => m.cedula == customerMetric.User.cedula)
 
                     };
-                    return View("RoutineForm", viewModel);
+                    return View("MetricForm", viewModel);
                 }
                 else
                 {
@@ -238,7 +241,7 @@ namespace Gym.Controllers
                         Metric = _context.Metric.SingleOrDefault(m => m.Id == customerMetric.Metric.Id)
 
                     };
-                    return View("RoutineForm", viewModel);
+                    return View("MetricForm", viewModel);
                 }
 
 
@@ -263,6 +266,8 @@ namespace Gym.Controllers
                     updateMetric.LeftBicep = customerMetric.Metric.LeftBicep;
                     updateMetric.RightCalf = customerMetric.Metric.RightCalf;
                     updateMetric.LeftCalf = customerMetric.Metric.LeftCalf;
+                    updateMetric.Month = customerMetric.Metric.Month;
+                    updateMetric.Year = customerMetric.Metric.Year;
                     
                 }
 

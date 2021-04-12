@@ -307,6 +307,10 @@
     <Compile Include="Migrations\202104112320040_UpdateMetric_v2.Designer.cs">
       <DependentUpon>202104112320040_UpdateMetric_v2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104120020191_RangeMetricYear.cs" />
+    <Compile Include="Migrations\202104120020191_RangeMetricYear.Designer.cs">
+      <DependentUpon>202104120020191_RangeMetricYear.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -731,6 +735,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104112320040_UpdateMetric_v2.resx">
       <DependentUpon>202104112320040_UpdateMetric_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104120020191_RangeMetricYear.resx">
+      <DependentUpon>202104120020191_RangeMetricYear.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

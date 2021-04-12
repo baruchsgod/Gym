@@ -102,17 +102,27 @@
         ,new SelectListItem { Text = "August", Value = "August" },new SelectListItem { Text = "September", Value = "September" },new SelectListItem { Text = "October", Value = "October" }, new SelectListItem { Text = "November", Value = "November" }
         ,new SelectListItem { Text = "December", Value = "December" }}, new { @class = "form-control" })
         </div>
-        
+
     </div>
-    
+
 
     <div class="form-group">
         @Html.HiddenFor(m => m.Metric.Date)
     </div>
-    @if (Model.Metric.Id > 0)
-    {
-        @Html.HiddenFor(model => model.Metric.Id)
-    }
+    @Html.HiddenFor(m => m.Metric.ApplicationUserId)
+    @Html.HiddenFor(model => model.Metric.Id)
+    @Html.HiddenFor(m => m.User.Id)
+    @Html.HiddenFor(m => m.User.PhoneNumberConfirmed)
+    @Html.HiddenFor(m => m.User.EmailConfirmed)
+    @Html.HiddenFor(m => m.User.TwoFactorEnabled)
+    @Html.HiddenFor(m => m.User.LockoutEnabled)
+    @Html.HiddenFor(m => m.User.AccessFailedCount)
+    @Html.HiddenFor(m => m.User.UserName)
+    @Html.HiddenFor(m => m.User.cedula)
+    @Html.HiddenFor(m => m.User.fName)
+    @Html.HiddenFor(m => m.User.lName)
+    @Html.HiddenFor(m => m.User.Telefono)
+
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -123,5 +133,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "MetricList")
 </div>

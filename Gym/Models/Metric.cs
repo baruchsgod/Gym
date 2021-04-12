@@ -42,6 +42,7 @@ namespace Gym.Models
         [Display(Name = "Metric Month")]
         public string Month { get; set; }
 
+        [Range(2021,2021)]
         public int Year { get; set; }
     }
 }
