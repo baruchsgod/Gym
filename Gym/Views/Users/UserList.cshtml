@@ -10,9 +10,7 @@
 <br />
 
 <div class="container">
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+   
     <table id="users" class="table">
         <thead>
             <tr>
@@ -37,6 +35,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Email)
                 </th>
+                <th>
+                    Actions
+                </th>
                 
             </tr>
         </thead>
@@ -45,29 +46,36 @@
             {
                 foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.cedula)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.fName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.lName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Telefono)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.BirthDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.BeginDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Email)
-                        </td>
-                    </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cedula)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BeginDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                
+                    <button class="btn-link">@Html.ActionLink("Edit", "EditUser", "Users", new { id = item.Id }, new { @class = "remove_text_decoration" })</button> |
+                    
+                    <button class="btn-link js-delete remove_text_decoration" data-membership-id=@item.Id>Delete</button>
+                
+                </td>
+            </tr>
                 }
             }
             else

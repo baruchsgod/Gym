@@ -622,6 +622,9 @@
     <Content Include="Views\Trainers\MetricForm.cshtml" />
     <Content Include="Views\Trainers\MetricList.cshtml" />
     <Content Include="Views\Trainers\ViewMetric.cshtml" />
+    <Content Include="Views\Users\CreateCustomer.cshtml" />
+    <Content Include="Views\Users\ClientForm.cshtml" />
+    <Content Include="Views\Users\EmployeeForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
