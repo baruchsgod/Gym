@@ -46,7 +46,7 @@
             {
                 foreach (var item in Model)
                 {
-            <tr>
+            <tr id=@item.Id>
                 <td>
                     @Html.DisplayFor(modelItem => item.cedula)
                 </td>
@@ -101,23 +101,28 @@
 
                 $("#users").DataTable();
 
-                //$("#memberships ").on("click", ".js-delete",function () {
-                //    var button = $(this);
-                //    var tableRow = "#" + button.attr("data-membership-id");
-                //    console.log(button);
+                $("#users").on("click", ".js-delete",function () {
+                    var button = $(this);
+                    var tableRow = "#" + button.attr("data-membership-id");
+                    if (button.attr("data-membership-id") === "fa1859d2-9c9b-461b-94bc-9ec139759c50") {
+                        bootbox.alert("This is the first administrator, it can't be deleted!")
+                    } else {
+                        bootbox.confirm("Are you sure you want to delete this user?", function (result) {
+                            if (result) {
+                                $.ajax({
 
-                //    bootbox.confirm("Are you sure you want to delete this membership?", function (result) {
-                //        if (result) {
-                //            $.ajax({
+                                    url: "/Users/Delete/" + button.attr("data-membership-id"),
+                                    method: "POST",
+                                    success: function () { $(tableRow).remove(); },
+                                    error: function () { bootbox.alert("There has been an error connecting with the database"); }
+                                });
+                            }
+                        });
+                    }
 
-                //                url: "/Memberships/Delete/" + button.attr("data-membership-id"),
-                //                method: "POST",
-                //                success: function () { $(tableRow).remove(); }
-                //            });
-                //        }
-                //    });
+                    
 
-                //});
+                });
             });
     </script>
 }

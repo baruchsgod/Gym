@@ -181,6 +181,24 @@ namespace Gym.Controllers
             return View("CreateCustomer", model);
         }
 
+        [HttpPost]
+
+        public ActionResult Delete(string id)
+        {
+            var user = _context.Users.SingleOrDefault(m => m.Id == id);
+
+            if (user != null)
+            {
+                _context.Users.Remove(user);
+                _context.SaveChanges();
+
+                return RedirectToAction("Index","Users");
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+        }
 
 
 
