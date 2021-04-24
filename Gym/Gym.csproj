@@ -311,6 +311,14 @@
     <Compile Include="Migrations\202104120020191_RangeMetricYear.Designer.cs">
       <DependentUpon>202104120020191_RangeMetricYear.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104241603583_AddDateToActivity.cs" />
+    <Compile Include="Migrations\202104241603583_AddDateToActivity.Designer.cs">
+      <DependentUpon>202104241603583_AddDateToActivity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104241606158_ChangeDateToNull.cs" />
+    <Compile Include="Migrations\202104241606158_ChangeDateToNull.Designer.cs">
+      <DependentUpon>202104241606158_ChangeDateToNull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -332,7 +340,9 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ActivityViewModel.cs" />
     <Compile Include="ViewModel\CustomerMetricViewModel.cs" />
+    <Compile Include="ViewModel\CustomerReservesViewModel.cs" />
     <Compile Include="ViewModel\CustomerRoutineViewModel.cs" />
+    <Compile Include="ViewModel\CustRoutinesViewModel.cs" />
     <Compile Include="ViewModel\PaymentActivityViewModel.cs" />
     <Compile Include="ViewModel\ReserveViewModel.cs" />
     <Compile Include="ViewModel\ShoppingCartViewModel.cs" />
@@ -625,6 +635,10 @@
     <Content Include="Views\Users\CreateCustomer.cshtml" />
     <Content Include="Views\Users\ClientForm.cshtml" />
     <Content Include="Views\Users\EmployeeForm.cshtml" />
+    <Content Include="Views\Reports\CheckReserves.cshtml" />
+    <Content Include="Views\Reports\ActivityForm.cshtml" />
+    <Content Include="Views\Reports\ViewRoutine.cshtml" />
+    <Content Include="Views\Reports\RoutineForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -741,6 +755,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104120020191_RangeMetricYear.resx">
       <DependentUpon>202104120020191_RangeMetricYear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104241603583_AddDateToActivity.resx">
+      <DependentUpon>202104241603583_AddDateToActivity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104241606158_ChangeDateToNull.resx">
+      <DependentUpon>202104241606158_ChangeDateToNull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

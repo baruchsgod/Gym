@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Gym.Models.Routine>
+@{
+    ViewBag.Title = "CheckReserves";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CheckReserves</h2>
+
+<br />
+<br />
+<br />
+<div class="container">
+    <br /><br /><br />
+    @if (Model.Count() > 0)
+    { 
+        <h3>@Model.ElementAt(0).ApplicationUser.fName these are your routines:</h3>
+    }
+    else
+    {
+        <h3>No Routines have been added to your workout</h3>
+    }
+
+        <table class="table" id="Routines">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.ElementAt(0).Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.ElementAt(0).Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.ElementAt(0).BeginWeek)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.ElementAt(0).EndWeek)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.ElementAt(0).Date)
+                    </th>
+
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr id=@item.Id>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Type)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BeginWeek)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EndWeek)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                <button class="btn-link">@Html.ActionLink("Details", "RoutineDetails", new { id = item.Id })</button>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" style="text-align:center">@Model.ElementAt(0).ApplicationUser.fName there are not reserves for you at this moment</td>
+                    </tr>
+                }
+            </tbody>
+
+
+
+        </table>
+    </div>
+
+@section scripts
+    {
+    <script>
+            $(document).ready(function () {
+
+                $("#Routines").DataTable();
+
+
+            });
+    </script>
+}

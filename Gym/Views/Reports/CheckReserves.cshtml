@@ -1,0 +1,100 @@
+﻿@model Gym.ViewModel.CustomerReservesViewModel
+@{
+    ViewBag.Title = "CheckReserves";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CheckReserves</h2>
+
+<br />
+<br />
+<br />
+<div class="container">
+    <br /><br /><br />
+                <h3>@Model.ApplicationUser.fName these are you active reserves:</h3>
+    <table class="table" id="Reserves">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(m => m.Activities.ElementAt(0).Year)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Activities.ElementAt(0).Month)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Activities.ElementAt(0).day)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Activities.ElementAt(0).Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Activities.ElementAt(0).Hour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Activities.ElementAt(0).Minutes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Activities.ElementAt(0).Shift)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Activities.Count() > 0)
+            {
+                foreach (var item in Model.Activities)
+                {
+            <tr id=@item.Id>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.day)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Minutes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Shift)
+                </td>
+                <td>
+                    <button class="btn-link">@Html.ActionLink("Details", "ReserveDetails", new { id = item.Id })</button> 
+                </td>
+            </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="8" style="text-align:center">@Model.ApplicationUser.fName there are not reserves for you at this moment</td>
+                </tr>
+            }
+        </tbody>
+
+
+
+    </table>
+</div>
+
+@section scripts
+    {
+    <script>
+            $(document).ready(function () {
+
+                $("#Reserves").DataTable();
+
+               
+            });
+    </script>
+}

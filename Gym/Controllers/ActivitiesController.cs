@@ -59,7 +59,7 @@ namespace Gym.Controllers
                     }
                     else
                     {
-                        var idExercise = int.Parse(item.Description);
+                        
 
                         if (item.Reserve == null)
                         {
@@ -70,7 +70,7 @@ namespace Gym.Controllers
                             Year = item.Year,
                             Month = item.Month,
                             day = item.day,
-                            Description = _context.Exercise.SingleOrDefault(m =>m.Id == idExercise).Name,
+                            Description = item.Description,
                             Quantity = item.Quantity,
                             Hour = item.Hour,
                             Minutes = item.Minutes,
@@ -158,6 +158,28 @@ namespace Gym.Controllers
 
             if (activity.Id == 0)
             {
+                var month = 0;
+                switch (activity.Month)
+                {
+                    case "January": month = 1; break;
+                    case "February": month = 2; break;
+                    case "March": month = 3; break;
+                    case "April": month = 4; break;
+                    case "May": month = 5; break;
+                    case "June": month = 6; break;
+                    case "July": month = 7; break;
+                    case "August": month = 8; break;
+                    case "September": month = 9; break;
+                    case "October": month = 10; break;
+                    case "November": month = 11; break;
+                    case "December": month = 12; break;
+                    default:
+                        break;
+                }
+
+                DateTime value = new DateTime(activity.Year, month, activity.day);
+
+                activity.Date = value;
                 _context.Activity.Add(activity);
             }
             else

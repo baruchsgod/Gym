@@ -1,0 +1,89 @@
+﻿@model Gym.Models.Activity
+@{
+    ViewBag.Title = "ActivityForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+
+<div class="container">
+    <h3>Activity Details</h3>
+    <br />
+   
+        <div class="row">
+            <div class="col-md-3">
+                @Html.LabelFor(m => m.Year, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Year, new { @class = "form-control", @readonly = "readonly" })
+             
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(m => m.Month, new { @class = "form-label" })
+                @Html.DropDownListFor(m => m.Month, new List<SelectListItem> { new SelectListItem { Text = "January", Value = "January" }, new SelectListItem { Text = "February", Value = "February" }, new SelectListItem { Text = "March", Value = "March" }
+                    , new SelectListItem { Text = "April", Value = "April" }, new SelectListItem { Text = "May", Value = "May" }, new SelectListItem { Text = "June", Value = "June" }, new SelectListItem { Text = "July", Value = "July" }
+                    , new SelectListItem { Text = "August", Value = "August"} , new SelectListItem { Text = "September", Value = "September" } ,new SelectListItem { Text = "October", Value = "October" }, new SelectListItem { Text = "November", Value = "November" },
+                    new SelectListItem { Text = "December", Value = "December" }}, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(m => m.day, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.day, new { @class = "form-control", @readonly = "readonly" })
+              
+            </div>
+        </div>
+        <br /><br />
+        <div class="row">
+            <div class="col-lg-4">
+                @Html.LabelFor(m => m.Description, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Description, new { @class = "form-control", @readonly = "readonly" })
+             
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(m => m.Quantity, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control", @readonly = "readonly" })
+             
+            </div>
+        </div>
+        <br /><br />
+        <div class="row">
+            <div class="col-md-3">
+                @Html.LabelFor(m => m.Hour, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Hour, new { @class = "form-control", @readonly = "readonly" })
+           
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(m => m.Minutes, new { @class = "form-label" })
+                @Html.DropDownListFor(m => m.Minutes, new List<SelectListItem> { new SelectListItem { Text = "00", Value = "00" }, new SelectListItem { Text = "15", Value = "15" }, new SelectListItem { Text = "30", Value = "30" }
+                  , new SelectListItem { Text = "45", Value = "45" }}, new { @class = "form-control", @readonly = "readonly" })
+             
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(m => m.Shift, new { @class = "form-label" })
+                @Html.DropDownListFor(m => m.Shift, new List<SelectListItem> { new SelectListItem { Text = "AM", Value = "AM" }, new SelectListItem { Text = "PM", Value = "PM" } }, new { @class = "form-control", @readonly = "readonly" })
+               
+            </div>
+        </div>
+        <br /><br />
+        <div class="row">
+            <div class="col-lg-5">
+                @Html.LabelFor(m => m.ApplicationUserId, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.ApplicationUser.fName, new { @class = "form-control", @readonly = "readonly" })
+        
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(m => m.Price, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Price, new { @class = "form-control", @readonly = "readonly" })
+           
+            </div>
+        </div>
+        <br />
+     
+       
+    
+
+
+</div>
+
+
+

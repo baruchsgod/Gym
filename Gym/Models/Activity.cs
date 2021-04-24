@@ -50,5 +50,7 @@ namespace Gym.Models
 
         [Range(1,12)]
         public int? MonthNum { get; set; }
+
+        public DateTime? Date { get; set; }
     }
 }
