@@ -71,7 +71,7 @@ textarea {
     border: 1px solid #00bc8c;
     margin: 5px;
     border-radius: 10px;
-    width: 30%;
+    width: 60%;
     padding-top: 2px;
     padding-bottom: 3px;
 }
@@ -83,9 +83,20 @@ textarea {
     height: 185px;
 }
 
-.add-to-cart{
-    margin-bottom:10px;
-    width:35%;
+.supplement-imgs {
+    border-radius: 10px;
+    width: 50%;
+    margin-bottom: 10px;
+    height: 150px;
+}
+
+.border-card{
+    padding-left:25px;
+}
+
+.add-to-cart {
+    margin-bottom: 10px;
+    width: 35%;
 }
 
 .shop-count{

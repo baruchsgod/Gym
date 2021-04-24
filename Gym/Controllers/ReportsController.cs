@@ -110,7 +110,7 @@ namespace Gym.Controllers
 
         public ActionResult RoutineDetails(int id)
         {
-            var routine = _context.Routine.SingleOrDefault(m => m.Id == id);
+            var routine = _context.Routine.Include(u => u.ApplicationUser).SingleOrDefault(m => m.Id == id);
 
             if (routine == null)
             {
@@ -120,6 +120,26 @@ namespace Gym.Controllers
             {
                 return View("RoutineForm", routine);
             }
+        }
+
+        public ActionResult ViewPurchases()
+        {
+            var userLoggedIn = User.Identity.Name;
+
+            var purchases = _context.Purchase.Include(u => u.ApplicationUser).Include(s => s.Supplement).Where(u => u.ApplicationUser.Email == userLoggedIn);
+
+            return View("ViewPurchases", purchases);
+        }
+
+        public ActionResult ViewMetrics()
+        {
+            var userLoggedIn = User.Identity.Name;
+
+            //var query = _context.Metric.Include(u => u.ApplicationUser)
+            //    .GroupBy(m => m.Month)
+            //    .
+
+            return View("ViewMetrics");
         }
     }
 }

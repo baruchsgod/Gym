@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Gym.Models.Purchase>
+@{
+    ViewBag.Title = "ViewPurchases";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<div class="container">
+    <br /><br /><br />
+    @if (Model.Count() > 0)
+    {
+        <h3>@Model.ElementAt(0).ApplicationUser.fName these are your purchases:</h3>
+    }
+    else
+    {
+        <h3>You do not have any purchases at this moment</h3>
+    }
+    <br /><br />
+    @if (Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+            <div class="row">
+                <div class="col-6 card-info">
+                    <div class="border-card bg-light border rounded-3">
+                        <h4>Product Description: @item.Supplement.Description</h4>
+                        <h4>Product Price: @item.Supplement.Price</h4>
+                        <h4>Quantity bought: @item.Quantity</h4>
+                        <h4>Total: @item.Total</h4>
+                        <img src=@item.Supplement.Image class="supplement-imgs" />
+                        <p>Purchase Date: @item.Date</p>
+                    </div>
+                </div>
+            </div>
+            <br /><br />
+        }
+
+
+    }
+    else
+    {
+        <div class="col-6 card-info" style="width:80%;">
+            <div class="h-100 p-5 bg-light border rounded-3">
+                <h2>You do not have anything in your purchase history at this moment</h2>
+                <p>Please make a purchase to see information in this section!</p>
+
+                @Html.ActionLink("Go to Menu", "Index", "Reports")
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
