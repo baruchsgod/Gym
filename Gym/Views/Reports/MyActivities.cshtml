@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Gym.Models.Activity>
+@{
+    ViewBag.Title = "MyActivities";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MyActivities</h2>
+
+<br />
+<br />
+<br />
+<div class="container">
+    <br /><br /><br />
+    @if (Model.Count() > 0)
+    {
+        <h3>@Model.ElementAt(0).ApplicationUser.fName these are you active reserves:</h3>
+    }
+    
+
+    <table class="table" id="Reserves">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(m => m.Year)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Month)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.day)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Hour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Minutes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Shift)
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <tr id=@item.Id>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Year)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Month)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.day)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Hour)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Minutes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Shift)
+                        </td>
+                        
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="8" style="text-align:center">You do not have any upcoming activity at this moment</td>
+                </tr>
+            }
+        </tbody>
+
+
+
+    </table>
+</div>
+
+
+
+
+
+@section scripts
+    {
+    <script>
+        $(document).ready(function () {
+
+            $("#Reserves").DataTable();
+
+
+        });
+    </script>
+}

@@ -1,0 +1,76 @@
+﻿@model Gym.Models.ApplicationUser
+@{
+    ViewBag.Title = "ValidateClient";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-horizontal" id="routineForm">
+    <h3>  Find Customer </h3>
+    <hr class="my-4">
+    <h4>Find the Customer </h4>
+    <div class="row">
+        <div class="col-lg-6">
+            <label class="form-label">National ID</label>
+            <input id="idCedula" type="text"  onblur="findCustomer()" class="form-control"/>
+            
+        </div>
+    </div>
+
+    <br /><br />
+    <div class="row"  style="text-align:center">
+        <div class="col-lg-6">
+            <input id="FindButton" type="submit" value="Check" class="btn btn-success" onclick="CustomerForm()" disabled/>
+        </div>
+    </div>
+
+</div>
+
+@section scripts
+    {
+    <script>
+
+        function findCustomer() {
+
+            
+
+            var ced = document.getElementById("idCedula").value;
+
+                $.ajax({
+                    type:"POST",
+                    url: "/Reports/FindCustomer",
+                    data: {
+                        cedula:ced
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function () {
+                        document.getElementById("FindButton").removeAttribute("disabled");
+                    },
+                    error: function () {
+                        bootbox.alert("This ID does not exist in our database");
+                        document.getElementById("FindButton").setAttribute("disabled", "");
+                    }
+                });
+
+
+            };
+        
+        function CustomerForm() {
+            var ced = document.getElementById("idCedula").value;
+
+            
+
+            var url = "https://localhost:44319/Reports/GetMetric?ced=" + ced;
+            $.ajax({
+
+                url: "/Reports/GetMetric/" + ced,
+                method: "GET",
+                success: function () { window.location = url; }
+            });
+        }
+               
+
+                
+            
+    </script>
+}

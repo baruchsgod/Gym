@@ -641,6 +641,11 @@
     <Content Include="Views\Reports\RoutineForm.cshtml" />
     <Content Include="Views\Reports\ViewPurchases.cshtml" />
     <Content Include="Views\Reports\ViewMetrics.cshtml" />
+    <Content Include="Views\Reports\ValidateClient.cshtml" />
+    <Content Include="Views\Reports\ViewMetric.cshtml" />
+    <Content Include="Views\Reports\ValidateClients.cshtml" />
+    <Content Include="Views\Reports\MyActivities.cshtml" />
+    <Content Include="Views\Reports\GetEvents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

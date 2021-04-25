@@ -131,15 +131,158 @@ namespace Gym.Controllers
             return View("ViewPurchases", purchases);
         }
 
+        public ActionResult GetMetrics()
+        {
+            return View("ViewMetrics");
+        }
+
         public ActionResult ViewMetrics()
         {
             var userLoggedIn = User.Identity.Name;
 
-            //var query = _context.Metric.Include(u => u.ApplicationUser)
-            //    .GroupBy(m => m.Month)
-            //    .
+            var user = _context.Users.SingleOrDefault(m => m.Email == userLoggedIn);
 
-            return View("ViewMetrics");
+            
+            var query = _context.Metric.Include(u => u.ApplicationUser).Where(u => u.ApplicationUserId == user.Id)
+                .GroupBy(m => m.Month)
+                .Select( x => new { 
+                    Month = x.Key,
+                    MassIndex = x.Select(y => y.MassIndex).Average(),
+                    Weight = x.Select(y => y.Weight).Average(),
+                    Chest = x.Select(y => y.Chest).Average(),
+                    Waist = x.Select(y => y.Waist).Average(),
+                    RightBicep = x.Select(y => y.RightBicep).Average(),
+                    LeftBicep = x.Select(y => y.LeftBicep).Average(),
+                    RightCalf = x.Select(y => y.RightCalf).Average(),
+                    LeftCalf = x.Select(y => y.LeftCalf).Average(),
+                    User = x.Select(y => y.ApplicationUserId).FirstOrDefault(),
+                    Year = x.Select(y => y.Year).FirstOrDefault()
+                });
+
+            if (query == null)
+            {
+                return Json(null, JsonRequestBehavior.DenyGet);
+            }
+            else
+            {
+                return Json(query, JsonRequestBehavior.AllowGet);
+            }
+
+            
+        }
+
+        public ActionResult ValidateClient()
+        {
+            return View();
+        }
+
+        public ActionResult ValidateClients()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult FindCustomer(string cedula)
+        {
+            if (String.IsNullOrEmpty(cedula))
+            {
+                return Json(null, JsonRequestBehavior.DenyGet);
+            }
+            else
+            {
+                var client = _context.Users.SingleOrDefault(m => m.cedula == cedula);
+
+
+                if (client != null)
+                {
+                    return Json(client.Email, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(null, JsonRequestBehavior.DenyGet);
+                }
+            }
+
+
+        }
+
+        public ActionResult GetMetric(string ced)
+        {
+            ViewBag.ced = ced;
+
+            return View("ViewMetric");
+        }
+
+        public ActionResult GetRoutine(string ced)
+        {
+            var user = _context.Users.SingleOrDefault(m => m.cedula == ced);
+
+            var routine = _context.Routine.Include(u => u.ApplicationUser).SingleOrDefault(m => m.ApplicationUserId == user.Id);
+
+            return View("RoutineForm",routine);
+        }
+
+        public ActionResult ViewMetric(string ced)
+        {
+           
+
+            var user = _context.Users.SingleOrDefault(m => m.cedula == ced);
+
+
+            var query = _context.Metric.Include(u => u.ApplicationUser).Where(u => u.ApplicationUserId == user.Id)
+                .GroupBy(m => m.Month)
+                .Select(x => new {
+                    Month = x.Key,
+                    MassIndex = x.Select(y => y.MassIndex).Average(),
+                    Weight = x.Select(y => y.Weight).Average(),
+                    Chest = x.Select(y => y.Chest).Average(),
+                    Waist = x.Select(y => y.Waist).Average(),
+                    RightBicep = x.Select(y => y.RightBicep).Average(),
+                    LeftBicep = x.Select(y => y.LeftBicep).Average(),
+                    RightCalf = x.Select(y => y.RightCalf).Average(),
+                    LeftCalf = x.Select(y => y.LeftCalf).Average(),
+                    User = x.Select(y => y.ApplicationUserId).FirstOrDefault(),
+                    Year = x.Select(y => y.Year).FirstOrDefault()
+                });
+
+            if (query == null)
+            {
+                return Json(null, JsonRequestBehavior.DenyGet);
+            }
+            else
+            {
+                return Json(query, JsonRequestBehavior.AllowGet);
+            }
+
+
+        }
+
+        public ActionResult MyActivities()
+        {
+            var email = User.Identity.Name;
+
+            var user = _context.Users.SingleOrDefault(u => u.Email == email);
+
+            var myActivities = _context.Activity.Include(u => u.ApplicationUser).Where(m => m.ApplicationUserId == user.Id);
+
+            var upcomingActivities = new List<Activity>();
+
+            foreach (var item in myActivities)
+            {
+                if (item.Date >= DateTime.Now)
+                {
+                    upcomingActivities.Add(item);
+                }
+            }
+
+            return View(upcomingActivities);
+        }
+
+        public ActionResult GetEvents()
+        {
+            var activities = _context.Activity.Where(m => m.Date >= DateTime.Now);
+
+            return View(activities);
         }
     }
 }

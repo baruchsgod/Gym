@@ -18,41 +18,112 @@
                         This chart shows your evolution in terms of your own metrics by month.
                     </p>
                 </figure>
-                <script >
-                    Highcharts.chart('container', {
-                        chart: {
-                            type: 'line'
-                        },
-                        title: {
-                            text: 'Monthly Metrics'
-                        },
-                        subtitle: {
-                            text: 'Source: Your monthly metrics at Energyx'
-                        },
-                        xAxis: {
-                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-                        },
-                        yAxis: {
-                            title: {
-                                text: 'Metric Values'
-                            }
-                        },
-                        plotOptions: {
-                            line: {
-                                dataLabels: {
-                                    enabled: true
+
+                @section scripts
+    {
+                    <script>
+                        $(document).ready(function () {
+                            $.ajax({
+                                cache: false,
+                                type: "GET",
+                                url: "/Reports/ViewMetrics",
+                                dataType: 'json',
+                                success: function (data) {
+                                    var MassIndex = [];
+                                    var Weight = [];
+                                    var Chest = [];
+                                    var Waist = [];
+                                    var RightBicep = [];
+                                    var LeftBicep = [];
+                                    var RightCalf = [];
+                                    var LeftCalf = [];
+                                    var Month = [];
+
+
+                                    for (var i = 0; i < data.length; i++) {
+                                        Month.push(data[i].Month);
+                                        MassIndex.push(data[i].MassIndex);
+                                        Weight.push(data[i].Weight);
+                                        Chest.push(data[i].Chest);
+                                        Waist.push(data[i].Waist);
+                                        RightBicep.push(data[i].RightBicep);
+                                        LeftBicep.push(data[i].LeftBicep);
+                                        RightCalf.push(data[i].RightCalf);
+                                        LeftCalf.push(data[i].LeftCalf);
+                                    }
+
+                                    
+                                    if (Month.length === 0) {
+                                        bootbox.alert("There is no data to show, ask your trainer to enter your first metrics into the system");
+                                    } 
+
+                                    Highcharts.chart('container', {
+                                        chart: {
+                                            type: 'line'
+                                        },
+                                        title: {
+                                            text: 'Monthly Metrics'
+                                        },
+                                        subtitle: {
+                                            text: 'Source: Your monthly metrics at Energyx'
+                                        },
+                                        xAxis: {
+                                            categories: Month
+                                        },
+                                        yAxis: {
+                                            title: {
+                                                text: 'Metric Values'
+                                            }
+                                        },
+                                        plotOptions: {
+                                            line: {
+                                                dataLabels: {
+                                                    enabled: true
+                                                },
+                                                enableMouseTracking: false
+                                            }
+                                        },
+                                        series: [{
+                                            name: 'Mass Index',
+                                            data: MassIndex
+                                        }, {
+                                            name: 'Weight',
+                                            data: Weight
+                                        }, {
+                                            name: 'Chest',
+                                            data: Chest
+                                        }, {
+                                            name: 'Waist',
+                                            data: Waist
+                                        }, {
+                                            name: 'Right Bicep',
+                                            data: RightBicep
+                                        }, {
+                                            name: 'Left Bicep',
+                                            data: LeftBicep
+                                        }, {
+                                            name: 'Rigth Calf',
+                                            data: RightCalf
+                                        }, {
+                                            name: 'Left Calf',
+                                            data: LeftCalf
+                                        }]
+                                    });
                                 },
-                                enableMouseTracking: false
-                            }
-                        },
-                        series: [{
-                            name: 'Tokyo',
-                            data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-                        }, {
-                            name: 'London',
-                            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-                        }]
-                    });
-                </script>
-            </div>
+                                error: function (xhr, ajaxOptions, thrownError) {
+                                    bootbox.alert("There has been an error connecting with the database");
+                                }
+                            });
+
+                                
+                          
+                        });
+
+
+
+                    </script>
+
+                }
+
+            </div>       
 

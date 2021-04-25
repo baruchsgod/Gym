@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "ViewMetrics";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+<br />
+<br />
+<br />
+<div class="container">
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+        <p class="highcharts-description">
+            This chart shows your evolution in terms of your own metrics by month.
+        </p>
+    </figure>
+    <p id="ced" style="display:none">@ViewBag.ced</p>
+    @section scripts
+    {
+        <script>
+            $(document).ready(function () {
+
+                var cedula = document.getElementById("ced").innerHTML;
+
+                
+                
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "/Reports/ViewMetric",
+                    data: {
+                        ced: cedula
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        var MassIndex = [];
+                        var Weight = [];
+                        var Chest = [];
+                        var Waist = [];
+                        var RightBicep = [];
+                        var LeftBicep = [];
+                        var RightCalf = [];
+                        var LeftCalf = [];
+                        var Month = [];
+
+
+                        for (var i = 0; i < data.length; i++) {
+                            Month.push(data[i].Month);
+                            MassIndex.push(data[i].MassIndex);
+                            Weight.push(data[i].Weight);
+                            Chest.push(data[i].Chest);
+                            Waist.push(data[i].Waist);
+                            RightBicep.push(data[i].RightBicep);
+                            LeftBicep.push(data[i].LeftBicep);
+                            RightCalf.push(data[i].RightCalf);
+                            LeftCalf.push(data[i].LeftCalf);
+                        }
+
+
+                        if (Month.length === 0) {
+                            bootbox.alert("There is no data to show, enter first metric for this customer");
+                        }
+
+                        Highcharts.chart('container', {
+                            chart: {
+                                type: 'line'
+                            },
+                            title: {
+                                text: 'Monthly Metrics'
+                            },
+                            subtitle: {
+                                text: 'Source: Customer monthly metrics at Energyx'
+                            },
+                            xAxis: {
+                                categories: Month
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Metric Values'
+                                }
+                            },
+                            plotOptions: {
+                                line: {
+                                    dataLabels: {
+                                        enabled: true
+                                    },
+                                    enableMouseTracking: false
+                                }
+                            },
+                            series: [{
+                                name: 'Mass Index',
+                                data: MassIndex
+                            }, {
+                                name: 'Weight',
+                                data: Weight
+                            }, {
+                                name: 'Chest',
+                                data: Chest
+                            }, {
+                                name: 'Waist',
+                                data: Waist
+                            }, {
+                                name: 'Right Bicep',
+                                data: RightBicep
+                            }, {
+                                name: 'Left Bicep',
+                                data: LeftBicep
+                            }, {
+                                name: 'Rigth Calf',
+                                data: RightCalf
+                            }, {
+                                name: 'Left Calf',
+                                data: LeftCalf
+                            }]
+                        });
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        bootbox.alert("There has been an error connecting with the database");
+                    }
+                });
+
+
+
+            });
+
+
+
+        </script>
+
+    }
+
+</div>
+
