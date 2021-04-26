@@ -24,12 +24,31 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Trainer", "Menu", "Trainers")</li>
-                    <li>@Html.ActionLink("Admin", "Menu", "Users")</li>
-                    <li>@Html.ActionLink("Membership", "Index", "Memberships")</li>
-                    <li>@Html.ActionLink("Activities", "Index", "Activities")</li>
-                    <li>@Html.ActionLink("Reports", "Index", "Reports")</li>
+                    @if (this.User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Trainer", "Menu", "Trainers")</li>
+                        <li>@Html.ActionLink("Admin", "Menu", "Users")</li>
+                        <li>@Html.ActionLink("Membership", "Index", "Memberships")</li>
+                        <li>@Html.ActionLink("Activities", "Index", "Activities")</li>
+                        <li>@Html.ActionLink("Reports", "Index", "Reports")</li>
+                    }
+                    else if (this.User.IsInRole("Trainer"))
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Trainer", "Menu", "Trainers")</li>
+                        <li>@Html.ActionLink("Membership", "Index", "Memberships")</li>
+                        <li>@Html.ActionLink("Activities", "Index", "Activities")</li>
+                        <li>@Html.ActionLink("Reports", "Index", "Reports")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Membership", "Index", "Memberships")</li>
+                        <li>@Html.ActionLink("Activities", "Index", "Activities")</li>
+                        <li>@Html.ActionLink("Reports", "Index", "Reports")</li>
+                    }
+
 
 
 
@@ -38,10 +57,18 @@
                 @Html.Partial("_LoginPartial")
                 @if (Request.IsAuthenticated)
                 {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/Supplements/MyCart" class="fa fa-shopping-cart fa-3x"></a></li>
-                        <li class="badge bg-primary rounded-pill shop-count">4</li>
-                    </ul>
+                    if (this.User.IsInRole("Admin") || this.User.IsInRole("Trainer"))
+                    {
+
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="/Supplements/MyCart" class="fa fa-shopping-cart fa-3x"></a></li>
+                            <li class="badge bg-primary rounded-pill shop-count"> @Session["Cart"] </li>
+                        </ul>
+                    }
+
                 }
 
             </div>

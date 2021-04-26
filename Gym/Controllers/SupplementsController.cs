@@ -117,6 +117,8 @@ namespace Gym.Controllers
 
             _context.SaveChanges();
 
+            Session["Cart"] = _context.ShoppingCart.Where(m => m.Name == User.Identity.Name).Where(m => m.State == true).Count();
+
             return RedirectToAction("Index", "Supplements");
             
             
@@ -200,6 +202,8 @@ namespace Gym.Controllers
 
                 var MyCart = _context.ShoppingCart.Where(m => m.Name == User.Identity.Name).Where(m => m.State == true);
 
+               
+
                 foreach (var item in MyCart)
                 {
                     item.State = false;
@@ -221,6 +225,7 @@ namespace Gym.Controllers
                 }
 
                 _context.SaveChanges();
+                Session["Cart"] = 0;
                 return RedirectToAction("SuccessfullPurchase", "Supplements");
             }
             
@@ -267,6 +272,17 @@ namespace Gym.Controllers
                 _context.ShoppingCart.Remove(cartItem); 
             }
             _context.SaveChanges();
+
+            var cart = _context.ShoppingCart.Where(m => m.Name == User.Identity.Name).Where(m => m.State == true);
+
+            if (cart == null)
+            {
+                Session["Cart"] =0;
+            }
+            else
+            {
+                Session["Cart"] = cart.Count();
+            }
             return RedirectToAction("MyCart", "Supplements");
         }
     }

@@ -34,7 +34,7 @@ namespace Gym.Controllers
 
             foreach (var item in allActivities)
             {
-                if (item.Year >= now.Year)
+                if (item.Year >= now.Year && item.Date >= now)
                 {
                     switch (item.Month)
                     {

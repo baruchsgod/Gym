@@ -16,7 +16,8 @@ namespace Gym.Models
 
         [Required]
         [Display(Name = "Card Number")]
-        public int CardNumber { get; set; }
+        [Range(100000000000, 99999999999999999, ErrorMessage = "Your Credit Card must be between 12 and 17 digits")]
+        public long CardNumber { get; set; }
 
         
         [Required]
@@ -26,9 +27,11 @@ namespace Gym.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         [Display(Name = "Expiration Date")]
+        [MinDate]
         public DateTime ExpirationDate { get; set; }
 
         [Display(Name = "CVV")]
+        [Range(100,9999, ErrorMessage = "The CVV number must be between 100 and 9999")]
         public int Cvv { get; set; }
 
         [Required]
