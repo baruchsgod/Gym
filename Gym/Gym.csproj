@@ -319,6 +319,10 @@
     <Compile Include="Migrations\202104241606158_ChangeDateToNull.Designer.cs">
       <DependentUpon>202104241606158_ChangeDateToNull.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104260004138_DeletePayment.cs" />
+    <Compile Include="Migrations\202104260004138_DeletePayment.Designer.cs">
+      <DependentUpon>202104260004138_DeletePayment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -344,6 +348,7 @@
     <Compile Include="ViewModel\CustomerRoutineViewModel.cs" />
     <Compile Include="ViewModel\CustRoutinesViewModel.cs" />
     <Compile Include="ViewModel\PaymentActivityViewModel.cs" />
+    <Compile Include="ViewModel\PaymentViewModel.cs" />
     <Compile Include="ViewModel\ReserveViewModel.cs" />
     <Compile Include="ViewModel\ShoppingCartViewModel.cs" />
   </ItemGroup>
@@ -646,6 +651,9 @@
     <Content Include="Views\Reports\ValidateClients.cshtml" />
     <Content Include="Views\Reports\MyActivities.cshtml" />
     <Content Include="Views\Reports\GetEvents.cshtml" />
+    <Content Include="Views\Reports\ViewPayments.cshtml" />
+    <Content Include="Views\Reports\GetPurchase.cshtml" />
+    <Content Include="Views\Reports\GetReserve.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -768,6 +776,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104241606158_ChangeDateToNull.resx">
       <DependentUpon>202104241606158_ChangeDateToNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104260004138_DeletePayment.resx">
+      <DependentUpon>202104260004138_DeletePayment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

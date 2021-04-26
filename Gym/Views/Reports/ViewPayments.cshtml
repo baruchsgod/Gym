@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "ViewPayments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<br />
+<br />
+<br />
+<div class="container">
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+        <p class="highcharts-description">
+            This chart shows the total amount of payments receive by date
+        </p>
+    </figure>
+    @section scripts{
+        <script>
+
+            $(document).ready(function () {
+                $.getJSON("/Reports/ViewPayments", function (data) {
+
+                    
+
+                    var sortedDate = data.sort((a, b) => new Date(b.Date) - new Date(a.Date));
+
+                   
+
+                    var Dates = [];
+                    var Total = [];
+
+                    for (var i = 0; i < sortedDate.length; i++) {
+                        Dates.push(sortedDate[i].Date);
+                        Total.push(sortedDate[i].Total);
+                    };
+
+                    
+
+                    
+                    Highcharts.chart('container', {
+                        chart: {
+                            type: 'areaspline'
+                        },
+                        title: {
+                            text: 'Payments Received by Date'
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'left',
+                            verticalAlign: 'top',
+                            x: 150,
+                            y: 100,
+                            floating: true,
+                            borderWidth: 1,
+                            backgroundColor:
+                                Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
+                        },
+                        xAxis: {
+                            categories: Dates,
+                            plotBands: [{ // visualize the weekend
+                                from: 4.5,
+                                to: 6.5,
+                                color: 'rgba(68, 170, 213, .2)'
+                            }]
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Total in Colones'
+                            }
+                        },
+                        tooltip: {
+                            shared: true,
+                            valueSuffix: ' units'
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            areaspline: {
+                                fillOpacity: 0.5
+                            }
+                        },
+                        series: [{
+                            name: 'Payments Total',
+                            data: Total
+                        }]
+                    });
+                });
+                
+            });
+
+        </script>    
+        
+    }
+</div>
+

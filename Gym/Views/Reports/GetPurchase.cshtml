@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Gym.Models.Purchase>
+@{
+    ViewBag.Title = "GetPurchase";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br /><br /><br />
+<div class="container">
+    <br /><br />
+          <h3>These are all the purchases made by the customers</h3>
+          <br /><br />
+    <table class="table" id="Purchase">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(m => m.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Total)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Supplement.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Supplement.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.ApplicationUser.fName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.ApplicationUser.lName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.ApplicationUser.Email)
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <tr id=@item.Id>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Total)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Supplement.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Supplement.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApplicationUser.fName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApplicationUser.lName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="8" style="text-align:center">There are not purchases at this moment</td>
+                </tr>
+            }
+        </tbody>
+
+
+
+    </table>
+
+</div>
+
+@section scripts
+    {
+    <script>
+            $(document).ready(function () {
+
+                $("#Purchase").DataTable();
+
+
+            });
+    </script>
+}

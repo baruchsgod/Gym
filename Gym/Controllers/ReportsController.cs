@@ -284,5 +284,63 @@ namespace Gym.Controllers
 
             return View(activities);
         }
+
+        public ActionResult GetPayments()
+        {
+            return View("ViewPayments");
+        }
+
+        public ActionResult ViewPayments()
+        {
+            var query = _context.Payment.GroupBy(m => m.DatePurchase)
+                .Select(x => new { 
+                    Date = x.Key,
+                    Total = x.Select(y => y.Total).Sum()
+                });
+
+            var updatedQuery = new List<PaymentViewModel>();
+
+            foreach (var item in query)
+            {
+                updatedQuery.Add(new PaymentViewModel { 
+                    Date = item.Date.ToString(string.Format("dd/MM/yyyy")),
+                    Total = item.Total
+                });
+              
+            }
+
+            if (query == null)
+            {
+                return Json(null, JsonRequestBehavior.DenyGet);
+            }
+            else
+            {
+                return Json(updatedQuery, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult GetPurchase()
+        {
+            var purchases = _context.Purchase.Include(u => u.ApplicationUser).Include(s => s.Supplement).ToList();
+
+            return View(purchases);
+        }
+
+        public ActionResult GetReserve()
+        {
+            var reserves = _context.Reserve.Include(u => u.ApplicationUser).Include(a => a.Activity).ToList();
+
+            var reserve = new List<Reserve>();
+
+            foreach (var item in reserves)
+            {
+                if (item.Activity.Date >= DateTime.Now)
+                {
+                    reserve.Add(item);
+                }
+            }
+
+            return View(reserve);
+        }
     }
 }

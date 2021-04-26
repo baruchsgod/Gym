@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Gym.Models.Reserve>
+@{
+    ViewBag.Title = "GetPurchase";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<div class="container">
+    <br /><br />
+    <h3>These are all the reserves made by the customers currently active:</h3>
+    <br /><br />
+    <table class="table" id="Reserve">
+        <thead>
+            <tr>
+               
+                <th>
+                    @Html.DisplayNameFor(m => m.Activity.Year)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Activity.Month)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Activity.day)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Activity.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Activity.Hour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Activity.Minutes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Activity.Shift)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.ApplicationUser.fName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.ApplicationUser.lName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.ApplicationUser.Email)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+            <tr id=@item.Id>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activity.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activity.Month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activity.day)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activity.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activity.Hour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activity.Minutes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activity.Shift)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.lName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+                </td>
+            </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="11" style="text-align:center">There are not reserves at this moment</td>
+                </tr>
+            }
+        </tbody>
+
+
+
+    </table>
+
+</div>
+
+@section scripts
+    {
+    <script>
+            $(document).ready(function () {
+
+                $("#Reserve").DataTable();
+
+
+            });
+    </script>
+}
