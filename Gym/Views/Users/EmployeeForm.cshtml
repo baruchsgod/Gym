@@ -1,4 +1,4 @@
-﻿@model Gym.Models.ApplicationUser
+﻿@model Gym.Models.RegisterViewModelTrainer
 
 @{
 
@@ -14,9 +14,9 @@
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(m => m.cedula, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Cedula, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.cedula, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Cedula, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
@@ -55,8 +55,10 @@
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
         </div>
     </div>
-    
+
     @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.Password)
+    @Html.HiddenFor(m => m.ConfirmPassword)
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Edit" />

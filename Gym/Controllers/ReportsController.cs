@@ -184,24 +184,48 @@ namespace Gym.Controllers
         [HttpPost]
         public ActionResult FindCustomer(string cedula)
         {
-            if (String.IsNullOrEmpty(cedula))
+            try
             {
-                return Json(null, JsonRequestBehavior.DenyGet);
-            }
-            else
-            {
-                var client = _context.Users.SingleOrDefault(m => m.cedula == cedula);
-
-
-                if (client != null)
-                {
-                    return Json(client.Email, JsonRequestBehavior.AllowGet);
-                }
-                else
+                if (String.IsNullOrEmpty(cedula))
                 {
                     return Json(null, JsonRequestBehavior.DenyGet);
                 }
+                else
+                {
+                    var client = _context.Users.SingleOrDefault(m => m.cedula == cedula);
+
+
+                    if (client != null)
+                    {
+                        return Json(client.Email, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(null, JsonRequestBehavior.DenyGet);
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+
+                var email = User.Identity.Name;
+
+                var user = _context.Users.SingleOrDefault(m => m.Email == email);
+
+                var error = new Error()
+                {
+                    Description = ex.Message,
+                    ApplicationUserId = user.Id,
+                    Date = DateTime.Now
+                };
+
+                _context.Error.Add(error);
+
+                _context.SaveChanges();
+
+                return HttpNotFound();
+            }
+            
 
 
         }

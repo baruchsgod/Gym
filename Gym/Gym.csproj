@@ -331,6 +331,14 @@
     <Compile Include="Migrations\202104271552565_AddErrorTable.Designer.cs">
       <DependentUpon>202104271552565_AddErrorTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104271738343_UpdateUserValidation.cs" />
+    <Compile Include="Migrations\202104271738343_UpdateUserValidation.Designer.cs">
+      <DependentUpon>202104271738343_UpdateUserValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104271746093_UpdateBirthDateToNull.cs" />
+    <Compile Include="Migrations\202104271746093_UpdateBirthDateToNull.Designer.cs">
+      <DependentUpon>202104271746093_UpdateBirthDateToNull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -797,6 +805,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104271552565_AddErrorTable.resx">
       <DependentUpon>202104271552565_AddErrorTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104271738343_UpdateUserValidation.resx">
+      <DependentUpon>202104271738343_UpdateUserValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104271746093_UpdateBirthDateToNull.resx">
+      <DependentUpon>202104271746093_UpdateBirthDateToNull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

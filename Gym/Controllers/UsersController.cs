@@ -59,17 +59,43 @@ namespace Gym.Controllers
 
             if (role == null)
             {
-                return View("ClientForm", user);
+                var viewModel = new RegisterViewModel()
+                {
+                    Id = user.Id,
+                    Cedula = user.cedula,
+                    fName = user.fName,
+                    lName = user.lName,
+                    Telefono = user.Telefono,
+                    BirthDate = user.BirthDate,
+                    Email = user.Email,
+                    Password = user.PasswordHash,
+                    ConfirmPassword = user.PasswordHash
+                };
+
+                return View("ClientForm", viewModel);
             }
             else
             {
+                var userViewModel = new RegisterViewModelTrainer()
+                {
+                    Id = user.Id,
+                    Cedula = user.cedula,
+                    fName = user.fName,
+                    lName = user.lName,
+                    Telefono = user.Telefono,
+                    BirthDate = user.BirthDate,
+                    BeginDate = user.BeginDate,
+                    Email = user.Email,
+                    Password = user.PasswordHash,
+                    ConfirmPassword = user.PasswordHash
+                };
                 if (role.RoleId == "1aa6ef9e-d8e2-45f2-b359-4f882d26c250")
                 {
-                    return View("EmployeeForm", user);
+                    return View("EmployeeForm", userViewModel);
                 }
                 else
                 {
-                    return View("EmployeeForm", user);
+                    return View("EmployeeForm", userViewModel);
                 }
             }
             
@@ -78,28 +104,52 @@ namespace Gym.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public async Task<ActionResult> UpdateCustomer(ApplicationUser model)
+        public async Task<ActionResult> UpdateCustomer(RegisterViewModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View("ClientForm", model);
-            }
-            else
-            {
-                var clientUpdate = _context.Users.SingleOrDefault(m => m.Id == model.Id);
+                if (!ModelState.IsValid)
+                {
+                    return View("ClientForm", model);
+                }
+                else
+                {
+                    var clientUpdate = _context.Users.SingleOrDefault(m => m.Id == model.Id);
 
-                clientUpdate.cedula = model.cedula;
-                clientUpdate.fName = model.fName;
-                clientUpdate.lName = model.lName;
-                clientUpdate.Telefono = model.Telefono;
-                clientUpdate.BirthDate = model.BirthDate;
-                clientUpdate.Email = model.Email;
+                    clientUpdate.cedula = model.Cedula;
+                    clientUpdate.fName = model.fName;
+                    clientUpdate.lName = model.lName;
+                    clientUpdate.Telefono = model.Telefono;
+                    clientUpdate.BirthDate = model.BirthDate;
+                    clientUpdate.Email = model.Email;
+
+                    _context.SaveChanges();
+
+                    return RedirectToAction("Index", "Users");
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                var email = User.Identity.Name;
+
+                var user = _context.Users.SingleOrDefault(m => m.Email == email);
+
+                var error = new Error()
+                {
+                    Description = ex.Message,
+                    ApplicationUserId = user.Id,
+                    Date = DateTime.Now
+                };
+
+                _context.Error.Add(error);
 
                 _context.SaveChanges();
 
-                return RedirectToAction("Index","Users");
-                
+                return HttpNotFound();
             }
+            
 
             
         }
@@ -107,29 +157,53 @@ namespace Gym.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdateEmployee(ApplicationUser model)
+        public ActionResult UpdateEmployee(RegisterViewModelTrainer model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View("EmployeeForm", model);
-            }
-            else
-            {
-                var EmployeeUpdate = _context.Users.SingleOrDefault(m => m.Id == model.Id);
+                if (!ModelState.IsValid)
+                {
+                    return View("EmployeeForm", model);
+                }
+                else
+                {
+                    var EmployeeUpdate = _context.Users.SingleOrDefault(m => m.Id == model.Id);
 
-                EmployeeUpdate.cedula = model.cedula;
-                EmployeeUpdate.fName = model.fName;
-                EmployeeUpdate.lName = model.lName;
-                EmployeeUpdate.Telefono = model.Telefono;
-                EmployeeUpdate.BirthDate = model.BirthDate;
-                EmployeeUpdate.BeginDate = model.BeginDate;
-                EmployeeUpdate.Email = model.Email;
+                    EmployeeUpdate.cedula = model.Cedula;
+                    EmployeeUpdate.fName = model.fName;
+                    EmployeeUpdate.lName = model.lName;
+                    EmployeeUpdate.Telefono = model.Telefono;
+                    EmployeeUpdate.BirthDate = model.BirthDate;
+                    EmployeeUpdate.BeginDate = model.BeginDate;
+                    EmployeeUpdate.Email = model.Email;
+
+                    _context.SaveChanges();
+
+                    return RedirectToAction("Index", "Users");
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                var email = User.Identity.Name;
+
+                var user = _context.Users.SingleOrDefault(m => m.Email == email);
+
+                var error = new Error()
+                {
+                    Description = ex.Message,
+                    ApplicationUserId = user.Id,
+                    Date = DateTime.Now
+                };
+
+                _context.Error.Add(error);
 
                 _context.SaveChanges();
 
-                return RedirectToAction("Index", "Users");
-
+                return HttpNotFound();
             }
+            
         }
 
 
@@ -137,24 +211,49 @@ namespace Gym.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Save(RegisterViewModelTrainer model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
-
-                var user = new ApplicationUser { cedula = model.Cedula, fName = model.fName, lName = model.lName, Telefono = model.Telefono, BirthDate = model.BirthDate, BeginDate = model.BeginDate, UserName = model.Email, Email = model.Email };
-
-                var result = await UserManager.CreateAsync(user, model.Password);
-
-                if (result.Succeeded)
+                if (ModelState.IsValid)
                 {
-                    UserManager.AddToRole(user.Id, "Trainer");
+                    var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
 
-                    return RedirectToAction("Index", "Users");
+                    var user = new ApplicationUser { cedula = model.Cedula, fName = model.fName, lName = model.lName, Telefono = model.Telefono, BirthDate = model.BirthDate, BeginDate = model.BeginDate, UserName = model.Email, Email = model.Email };
 
+                    var result = await UserManager.CreateAsync(user, model.Password);
+
+                    if (result.Succeeded)
+                    {
+                        UserManager.AddToRole(user.Id, "Trainer");
+
+                        return RedirectToAction("Index", "Users");
+
+                    }
+                }
+
+                return View("Create", model);
             }
-        }
+            catch (Exception ex)
+            {
 
-            return View("Create", model);
+                var email = User.Identity.Name;
+
+                var user = _context.Users.SingleOrDefault(m => m.Email == email);
+
+                var error = new Error()
+                {
+                    Description = ex.Message,
+                    ApplicationUserId = user.Id,
+                    Date = DateTime.Now
+                };
+
+                _context.Error.Add(error);
+
+                _context.SaveChanges();
+
+                return HttpNotFound();
+            };
+
+            
         }
 
         [HttpPost]
@@ -162,42 +261,92 @@ namespace Gym.Controllers
 
         public async Task<ActionResult> SaveCustomer(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
-
-                var user = new ApplicationUser { cedula = model.Cedula, fName = model.fName, lName = model.lName, Telefono = model.Telefono, BirthDate = model.BirthDate, UserName = model.Email, Email = model.Email };
-
-                var result = await UserManager.CreateAsync(user, model.Password);
-
-                if (result.Succeeded)
+                if (ModelState.IsValid)
                 {
+                    var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
 
-                    return RedirectToAction("Index", "Users");
+                    var user = new ApplicationUser { cedula = model.Cedula, fName = model.fName, lName = model.lName, Telefono = model.Telefono, BirthDate = model.BirthDate, UserName = model.Email, Email = model.Email };
+
+                    var result = await UserManager.CreateAsync(user, model.Password);
+
+                    if (result.Succeeded)
+                    {
+
+                        return RedirectToAction("Index", "Users");
+
+                    }
 
                 }
-                
+                return View("CreateCustomer", model);
             }
-            return View("CreateCustomer", model);
+            catch (Exception ex)
+            {
+
+                var email = User.Identity.Name;
+
+                var user = _context.Users.SingleOrDefault(m => m.Email == email);
+
+                var error = new Error()
+                {
+                    Description = ex.Message,
+                    ApplicationUserId = user.Id,
+                    Date = DateTime.Now
+                };
+
+                _context.Error.Add(error);
+
+                _context.SaveChanges();
+
+                return HttpNotFound();
+            }
+
+            
         }
 
         [HttpPost]
 
         public ActionResult Delete(string id)
         {
-            var user = _context.Users.SingleOrDefault(m => m.Id == id);
-
-            if (user != null)
+            try
             {
-                _context.Users.Remove(user);
+                var user = _context.Users.SingleOrDefault(m => m.Id == id);
+
+                if (user != null)
+                {
+                    _context.Users.Remove(user);
+                    _context.SaveChanges();
+
+                    return RedirectToAction("Index", "Users");
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                var email = User.Identity.Name;
+
+                var user = _context.Users.SingleOrDefault(m => m.Email == email);
+
+                var error = new Error()
+                {
+                    Description = ex.Message,
+                    ApplicationUserId = user.Id,
+                    Date = DateTime.Now
+                };
+
+                _context.Error.Add(error);
+
                 _context.SaveChanges();
 
-                return RedirectToAction("Index","Users");
-            }
-            else
-            {
                 return HttpNotFound();
             }
+
+            
         }
 
 

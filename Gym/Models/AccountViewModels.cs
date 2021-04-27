@@ -66,8 +66,10 @@ namespace Gym.Models
 
     public class RegisterViewModel
     {
+        public string Id { get; set; }
+
         [Required]
-        [StringLength(9)]
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "The National ID must be of 9 characters")]
         [Display(Name = "National ID")]
         public string Cedula { get; set; }
 
@@ -82,12 +84,12 @@ namespace Gym.Models
         public string lName { get; set; }
 
         [Required]
-        [StringLength(12)]
+        [StringLength(12, MinimumLength = 8, ErrorMessage = "The minimum length of the phone number is 8 characters")]
         public string Telefono { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yy}")]
         [Display(Name = "Date of Birth")]
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         [Required]
         [EmailAddress]
@@ -108,8 +110,10 @@ namespace Gym.Models
 
     public class RegisterViewModelTrainer
     {
+        public string Id { get; set; } 
+
         [Required]
-        [StringLength(9)]
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "The National ID must be of 9 characters")]
         [Display(Name = "National ID")]
         public string Cedula { get; set; }
 
@@ -124,16 +128,16 @@ namespace Gym.Models
         public string lName { get; set; }
 
         [Required]
-        [StringLength(12)]
+        [StringLength(12, MinimumLength = 8, ErrorMessage = "The minimum length of the phone number is 8 characters")]
         public string Telefono { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yy}")]
         [Display(Name = "Date of Birth")]
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yy}")]
         [Display(Name = "First day of work")]
-        public DateTime BeginDate { get; set; }
+        public DateTime? BeginDate { get; set; }
 
         [Required]
         [EmailAddress]
