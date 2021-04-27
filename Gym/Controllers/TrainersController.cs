@@ -168,7 +168,11 @@ namespace Gym.Controllers
                 {
                     var viewModel = new CustomerRoutineViewModel()
                     {
-                        User = _context.Users.SingleOrDefault(m => m.cedula == customerRoutine.User.cedula)
+                        User = _context.Users.SingleOrDefault(m => m.cedula == customerRoutine.User.cedula),
+                        Routine = new Routine()
+                        {
+                            Date = DateTime.Now
+                        }
 
                     };
                     return View("RoutineForm", viewModel);
@@ -226,9 +230,17 @@ namespace Gym.Controllers
             {
                 if (customerMetric.Metric.Id == 0)
                 {
+                    var user = _context.Users.SingleOrDefault(m => m.cedula == customerMetric.User.cedula);
+
                     var viewModel = new CustomerMetricViewModel()
                     {
-                        User = _context.Users.SingleOrDefault(m => m.cedula == customerMetric.User.cedula)
+                        User = user,
+                        Metric = new Metric()
+                        {
+
+                            Date = DateTime.Now,
+                            ApplicationUserId = user.Id
+                        }
 
                     };
                     return View("MetricForm", viewModel);

@@ -15,6 +15,8 @@ namespace Gym.Models
         public string Type { get; set; }
 
         [Display(Name = "Begin Day")]
+
+        [ValidateBeginDate]
         public DateTime BeginWeek { get; set; }
 
         [Display(Name = "End Day")]

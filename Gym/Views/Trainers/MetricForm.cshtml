@@ -123,7 +123,7 @@
     @Html.HiddenFor(m => m.User.lName)
     @Html.HiddenFor(m => m.User.Telefono)
 
-    @if (Model.Metric.Id != 0)
+    @if (Model.Metric.Id > 0)
     {
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

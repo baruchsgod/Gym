@@ -156,26 +156,28 @@ namespace Gym.Controllers
                 
             }
 
+            var month = 0;
+            switch (activity.Month)
+            {
+                case "January": month = 1; break;
+                case "February": month = 2; break;
+                case "March": month = 3; break;
+                case "April": month = 4; break;
+                case "May": month = 5; break;
+                case "June": month = 6; break;
+                case "July": month = 7; break;
+                case "August": month = 8; break;
+                case "September": month = 9; break;
+                case "October": month = 10; break;
+                case "November": month = 11; break;
+                case "December": month = 12; break;
+                default:
+                    break;
+            }
+
             if (activity.Id == 0)
             {
-                var month = 0;
-                switch (activity.Month)
-                {
-                    case "January": month = 1; break;
-                    case "February": month = 2; break;
-                    case "March": month = 3; break;
-                    case "April": month = 4; break;
-                    case "May": month = 5; break;
-                    case "June": month = 6; break;
-                    case "July": month = 7; break;
-                    case "August": month = 8; break;
-                    case "September": month = 9; break;
-                    case "October": month = 10; break;
-                    case "November": month = 11; break;
-                    case "December": month = 12; break;
-                    default:
-                        break;
-                }
+                
 
                 DateTime value = new DateTime(activity.Year, month, activity.day);
 
@@ -185,6 +187,8 @@ namespace Gym.Controllers
             else
             {
                 var Event = _context.Activity.SingleOrDefault(m => m.Id == activity.Id);
+
+                
                 Event.Hour = activity.Hour;
                 Event.Year = activity.Year;
                 Event.Month = activity.Month;
@@ -197,6 +201,7 @@ namespace Gym.Controllers
                 Event.Price = activity.Price;
                 Event.Quantity = activity.Quantity;
                 Event.Reserve = activity.Reserve;
+                Event.Date = new DateTime(activity.Year, month, activity.day);
             }
 
             _context.SaveChanges();
