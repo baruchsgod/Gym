@@ -674,6 +674,7 @@
     <Content Include="Views\Reports\ViewPayments.cshtml" />
     <Content Include="Views\Reports\GetPurchase.cshtml" />
     <Content Include="Views\Reports\GetReserve.cshtml" />
+    <Content Include="Views\Memberships\membershipDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

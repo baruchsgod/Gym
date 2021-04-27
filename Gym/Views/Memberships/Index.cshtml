@@ -53,8 +53,8 @@
                             @Html.DisplayFor(modelItem => item.DiscountRate)
                         </td>
                         <td>
-                            <button class="btn-link">@Html.ActionLink("Edit", "Edit", "Memberships",new { id = item.Id }, new { @class = "remove_text_decoration" })</button> |
-                            <button class="btn-link">@Html.ActionLink("Details", "Details")</button> |
+                            <button class="btn-link">@Html.ActionLink("Edit", "Edit", "Memberships", new { id = item.Id }, new { @class = "remove_text_decoration" })</button> |
+                            <button class="btn-link">@Html.ActionLink("Details", "membershipDetails", "Memberships")</button>  |
                             <button class="btn-link js-delete remove_text_decoration" data-membership-id=@item.Id>Delete</button>
                         </td>
                     </tr>

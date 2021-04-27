@@ -39,6 +39,12 @@ namespace Gym.Controllers
         }
 
         [AllowAnonymous]
+        public ActionResult membershipDetails()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
         public ActionResult IndexNoSign()
         {
             var membershipTypes = _context.Memberships.ToList();

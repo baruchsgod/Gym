@@ -75,6 +75,38 @@ namespace Gym.Controllers
             return View(viewModel);
         }
 
+        public ActionResult CheckReserve()
+        {
+            var userLoggedIn = User.Identity.Name;
+
+            var user = _context.Users.SingleOrDefault(m => m.Email == userLoggedIn);
+
+            var date = DateTime.Now;
+
+            var reserves = _context.Reserve.Where(m => m.ApplicationUserId == user.Id);
+
+            var reserveActivity = _context.Reserve.Include(m => m.Activity).Include(u => u.ApplicationUser).Where( y => y.ApplicationUser.Id == user.Id);
+
+            var activities = new List<Activity>();
+
+            foreach (var item in reserveActivity)
+            {
+
+                if (item.Activity.Date >= date)
+                {
+                    activities.Add(item.Activity);
+                }
+            }
+
+            var viewModel = new CustomerReservesViewModel()
+            {
+                ApplicationUser = user,
+                Activities = activities
+            };
+
+            return View("CheckReserves",viewModel);
+        }
+
         public ActionResult ReserveDetails(int id)
         {
             var activity = _context.Activity.Include(t => t.ApplicationUser).SingleOrDefault(m => m.Id == id);
